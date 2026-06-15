@@ -1,0 +1,16 @@
+.social-media-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #3a3a3a;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.social-media-icon:hover {
+  background-color: #555;
+}

@@ -1,0 +1,48 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  padding: 20px 32px;
+  gap: 16px;
+}
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer__link {
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+.footer__link:hover {
+  color: #fff;
+}
+
+.footer__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer__badge img {
+  height: 40px;
+  object-fit: contain;
+}
