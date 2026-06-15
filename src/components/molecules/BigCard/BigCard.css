@@ -1,0 +1,28 @@
+.big-card {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+}
+
+.big-card-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.big-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.big-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 0;
+  text-align: left;
+}
