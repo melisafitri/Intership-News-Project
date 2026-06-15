@@ -1,0 +1,39 @@
+.topic-list {
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 12px;
+  width: 260px;
+}
+
+.topic-list-title {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.topic-list-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.topic-list-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #000000;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.topic-list-btn:hover {
+  background: #222222;
+}
