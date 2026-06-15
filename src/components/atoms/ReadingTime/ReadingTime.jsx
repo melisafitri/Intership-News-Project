@@ -2,11 +2,7 @@ import React from "react";
 import timeIcon from "../../../assets/icons/time.png";
 import "./ReadingTime.css";
 
-interface ReadingTimeProps {
-  minutes: number;
-}
-
-const ReadingTime: React.FC<ReadingTimeProps> = ({ minutes }) => {
+const ReadingTime = ({ minutes }) => {
   return (
     <span className="reading-time">
       <img src={timeIcon} alt="reading time" className="reading-time__icon" />

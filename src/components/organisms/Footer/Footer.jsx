@@ -2,7 +2,7 @@ import React from "react";
 import SocialMediaIcon from "../../atoms/SocialMediaIcon/SocialMediaIcon";
 import "./Footer.css";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__left">

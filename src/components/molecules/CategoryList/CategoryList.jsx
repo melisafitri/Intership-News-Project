@@ -16,7 +16,7 @@ const CATEGORIES = [
   "Other",
 ];
 
-const CategoryList: React.FC = () => {
+const CategoryList = () => {
   const [active, setActive] = useState("Berita Utama");
 
   return (
