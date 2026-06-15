@@ -1,9 +1,10 @@
 .logo {
   display: flex;
   align-items: center;
+  padding-left: 12px;
 }
 
 .logo img {
-  height: 32px;
+  height: 35px;
   object-fit: contain;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CategoryItem from "../../atoms/CategoryItem/CategoryItem";
+import Logo from "../../atoms/Logo/Logo";
 import "./CategoryList.css";
 
 const CATEGORIES = [
@@ -21,14 +22,19 @@ const CategoryList = () => {
 
   return (
     <nav className="category-list">
-      {CATEGORIES.map((cat) => (
-        <CategoryItem
-          key={cat}
-          label={cat}
-          isActive={active === cat}
-          onClick={() => setActive(cat)}
-        />
-      ))}
+      <div className="category-list__logo">
+        <Logo />
+      </div>
+      <div className="category-list__items">
+        {CATEGORIES.map((cat) => (
+          <CategoryItem
+            key={cat}
+            label={cat}
+            isActive={active === cat}
+            onClick={() => setActive(cat)}
+          />
+        ))}
+      </div>
     </nav>
   );
 };

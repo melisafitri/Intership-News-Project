@@ -1,0 +1,24 @@
+.topic-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.topic-item__hash {
+  color: #aaa;
+  font-size: 15px;
+}
+
+.topic-item__label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.topic-item:hover .topic-item__label {
+  color: #1fa3f4;
+}

@@ -1,8 +1,8 @@
 import "./BigCard.css";
-import Title from "../atoms/Title/Title";
-import Source from "../atoms/Source/Source";
-import ReadingTime from "../atoms/ReadingTime/ReadingTime";
-import Description from "../atoms/Description/Description";
+import Title from "../../atoms/Title/Title";
+import Source from "../../atoms/Source/Source";
+import ReadingTime from "../../atoms/ReadingTime/ReadingTime";
+import Description from "../../atoms/Description/Description";
 
 function BigCard({ img, title, source, readingTime, description }) {
   return (

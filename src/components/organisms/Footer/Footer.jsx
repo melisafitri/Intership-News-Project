@@ -1,5 +1,7 @@
 import React from "react";
 import SocialMediaIcon from "../../atoms/SocialMediaIcon/SocialMediaIcon";
+import appStore from "../../atoms/Logo/appstore.png";
+import playStore from "../../atoms/Logo/playstore.png";
 import "./Footer.css";
 
 const Footer = () => {
@@ -20,10 +22,10 @@ const Footer = () => {
       </div>
       <div className="footer__right">
         <a href="#" className="footer__badge">
-          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+          <img src={appStore} alt="Download on the App Store" />
         </a>
         <a href="#" className="footer__badge">
-          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+          <img src={playStore} alt="Get it on Google Play" />
         </a>
       </div>
     </footer>

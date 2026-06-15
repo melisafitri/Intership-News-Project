@@ -1,0 +1,19 @@
+.home__layout {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  max-width: 900px;
+}
+
+.home__main {
+  flex: 3;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home__sidebar {
+  flex: 1.5;
+  min-width: 0;
+  padding-top: 10px;
+}
