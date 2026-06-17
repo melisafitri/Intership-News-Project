@@ -9,10 +9,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__left">
         <div className="footer__socials">
-          <SocialMediaIcon type="twitter" />
-          <SocialMediaIcon type="facebook" />
-          <SocialMediaIcon type="instagram" />
-          <SocialMediaIcon type="youtube" />
+          <SocialMediaIcon type="twitter" href="https://x.com/rctiplus" />
+          <SocialMediaIcon type="facebook" href="https://www.facebook.com/RCTIPlusOfficial/" />
+          <SocialMediaIcon type="instagram" href="https://www.instagram.com/rctiplusofficial/" />
+          <SocialMediaIcon type="youtube" href="https://www.youtube.com/channel/UCDR9KL8jZnz0qcqVoU6lIMA" />
         </div>
         <div className="footer__links">
           <a href="#" className="footer__link">PRIVACY POLICY</a>
