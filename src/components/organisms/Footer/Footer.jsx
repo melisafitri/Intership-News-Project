@@ -15,9 +15,9 @@ const Footer = () => {
           <SocialMediaIcon type="youtube" href="https://www.youtube.com/channel/UCDR9KL8jZnz0qcqVoU6lIMA" />
         </div>
         <div className="footer__links">
-          <a href="#" className="footer__link">PRIVACY POLICY</a>
-          <a href="#" className="footer__link">TERMS & CONDITIONS</a>
-          <a href="#" className="footer__link">CONTACT US</a>
+          <a href="https://www.rctiplus.com/privacy-policy" className="footer__link">PRIVACY POLICY</a>
+          <a href="https://www.rctiplus.com/terms-&-conditions" className="footer__link">TERMS & CONDITIONS</a>
+          <a href="https://www.rctiplus.com/login" className="footer__link">CONTACT US</a>
         </div>
       </div>
       <div className="footer__right">
