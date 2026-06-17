@@ -20,7 +20,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
           onClick={() => onPageChange(page)}
         >
           {page}
-        </button>
+        </button> 
       ))}
 
       <button

@@ -17,7 +17,7 @@ function SmallCard({ img, title, source, description, minutes }) {
         <ReadingTime minutes={minutes} />
       </div>
     </div>
-  );
+  );pm 
 }
 
 export default SmallCard;

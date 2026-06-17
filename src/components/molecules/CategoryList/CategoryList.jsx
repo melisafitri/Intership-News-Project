@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CategoryItem from "../../atoms/CategoryItem/CategoryItem";
 import Logo from "../../atoms/Logo/Logo";
+import { NavLink } from "react-router-dom";
 import "./CategoryList.css";
 
 const CATEGORIES = [
@@ -14,11 +15,11 @@ const CATEGORIES = [
   "Gaya Hidup",
   "Otomotif",
   "Teknologi",
-  "Other",
 ];
 
 const CategoryList = () => {
   const [active, setActive] = useState("Berita Utama");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
     <nav className="category-list">
@@ -34,9 +35,23 @@ const CategoryList = () => {
             onClick={() => setActive(cat)}
           />
         ))}
+
+        <div
+          className="category-list__dropdown"
+          onMouseEnter={() => setDropdownOpen(true)}
+          onMouseLeave={() => setDropdownOpen(false)}
+        >
+          <span className="category-list__dropdown-label">Other ▾</span>
+          {dropdownOpen && (
+            <div className="category-list__dropdown-menu">
+              <NavLink to="/travel">Travel</NavLink>
+              <NavLink to="/infografis">Infografis</NavLink>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
-  );
+  );  
 };
 
-export default CategoryList;
+export default CategoryList;  

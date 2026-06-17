@@ -14,8 +14,8 @@
 
 .small-card-img {
   flex-shrink: 0;
-  width: 180px;
-  height: 120px;
+  width: 195px;
+  height: 108px;
   border-radius: 10px;
   overflow: hidden;
   background: transparent;
@@ -40,4 +40,6 @@
   justify-content: flex-start;
   gap: 6px;
   text-align: left;
+  flex: 1; 
+  min-width: 0; 
 }
