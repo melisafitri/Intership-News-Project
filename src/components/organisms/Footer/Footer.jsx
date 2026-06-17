@@ -21,10 +21,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer__right">
-        <a href="#" className="footer__badge">
+        <a href="https://apps.apple.com/id/app/rcti-superapp/id1472168599" className="footer__badge" target="_blank" rel="noopener noreferrer">
           <img src={appStore} alt="Download on the App Store" />
         </a>
-        <a href="#" className="footer__badge">
+        <a href="https://play.google.com/store/apps/details?id=com.fta.rctitv" className="footer__badge" target="_blank" rel="noopener noreferrer">
           <img src={playStore} alt="Get it on Google Play" />
         </a>
       </div>
