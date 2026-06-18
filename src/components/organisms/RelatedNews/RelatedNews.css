@@ -1,0 +1,19 @@
+.related-news {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 16px;
+  width: 280px;
+}
+
+.related-news__title {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.related-news__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

@@ -1,0 +1,33 @@
+.related-news-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.related-news-item:hover .title {
+  color: #1fa3f4;
+}
+
+.related-news-item__img {
+  width: 100px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.related-news-item__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-news-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
