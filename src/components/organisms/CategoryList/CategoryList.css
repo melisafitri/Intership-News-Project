@@ -1,16 +1,18 @@
 .category-list {
   display: flex;
-  flex-direction: row;
   align-items: center;
   background-color: #252525;
   padding: 0 24px;
-  gap: 8px;
-  padding-top: 20px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 24px;
+  gap: 32px;
 }
 
 .category-list__logo {
   flex-shrink: 0;
-  padding-right: 32px;
 }
 
 .category-list__items {
@@ -25,7 +27,6 @@
 .category-list__items::-webkit-scrollbar {
   display: none;
 }
-
 
 .category-list__dropdown {
   position: relative;
@@ -44,7 +45,7 @@
 .category-list__dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 80%;
+  left: 50%;
   transform: translateX(-50%);
   margin-top: 0;
   background-color: #3a3a3a;

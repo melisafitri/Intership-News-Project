@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryList from "../../components/molecules/CategoryList/CategoryList";
+import CategoryList from "../../components/organisms/CategoryList/CategoryList";
 import Footer from "../../components/organisms/Footer/Footer";
 import "./HomeTemplate.css";
 
