@@ -1,0 +1,28 @@
+.topic__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.topic__right {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.topic__result-header {
+  margin-bottom: 8px;
+}
+
+.topic__result {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.topic__total {
+  color: #aaaaaa;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
