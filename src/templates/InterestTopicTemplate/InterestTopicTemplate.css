@@ -1,0 +1,25 @@
+.interest-topic-template {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #252525;
+}
+
+.interest-topic-template__header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #252525;
+}
+
+.interest-topic-template__content {
+  flex: 1;
+  padding: 16px 0;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.interest-topic-template__footer {
+  margin-top: auto;
+}

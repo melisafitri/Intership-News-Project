@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './views/Home/Home'
 import Topic from './views/Topic/Topic'
+import InterestTopic from './views/InterestTopic/InterestTopic'
 import TopicTemplate from './templates/TopicTemplate/TopicTemplate'
 
 function App() {
@@ -9,8 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<Home />} />
+        <Route path="/category/:slug" element={<Home />} />
         <Route path="/topicpage/:slug" element={<Topic />} />
+        <Route path="/interest-topic" element={<InterestTopic />} />
       </Routes>
     </BrowserRouter>
   )

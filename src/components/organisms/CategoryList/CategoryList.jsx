@@ -5,16 +5,16 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./CategoryList.css";
 
 const CATEGORIES = [
-  "Berita Utama",
-  "Terkini",
-  "Nasional",
-  "Global",
-  "Ekonomi",
-  "Olahraga",
-  "Seleb",
-  "Gaya Hidup",
-  "Otomotif",
-  "Teknologi",
+  { label: "Berita Utama", slug: "berita-utama" },
+  { label: "Terkini", slug: "terkini" },
+  { label: "Nasional", slug: "nasional" },
+  { label: "Global", slug: "global" },
+  { label: "Ekonomi", slug: "ekonomi" },
+  { label: "Olahraga", slug: "olahraga" },
+  { label: "Seleb", slug: "seleb" },
+  { label: "Gaya Hidup", slug: "gaya-hidup" },
+  { label: "Otomotif", slug: "otomotif" },
+  { label: "Teknologi", slug: "teknologi" },
 ];
 
 const CategoryList = () => {
@@ -30,23 +30,24 @@ const CategoryList = () => {
       <div className="category-list__items">
         {CATEGORIES.map((cat) => (
           <CategoryItem
-            key={cat}
-            label={cat}
-            isActive={active === cat}
-            onClick={() => { setActive(cat); navigate("/"); }}
+            key={cat.slug}
+            label={cat.label}
+            isActive={active === cat.slug}
+            onClick={() => { setActive(cat.slug); navigate(`/category/${cat.slug}`); }}
           />
         ))}
 
-        <div
-          className="category-list__dropdown"
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <span className="category-list__dropdown-label">Other ▾</span>
+        <div className="category-list__dropdown">
+          <span
+            className="category-list__dropdown-label"
+            onClick={() => setDropdownOpen((prev) => !prev)}
+          >
+            Other {dropdownOpen ? "▴" : "▾"}
+          </span>
           {dropdownOpen && (
             <div className="category-list__dropdown-menu">
-              <NavLink to="/travel">Travel</NavLink>
-              <NavLink to="/infografis">Infografis</NavLink>
+              <NavLink to="/category/travel" onClick={() => setDropdownOpen(false)}>Travel</NavLink>
+              <NavLink to="/category/infografis" onClick={() => setDropdownOpen(false)}>Infografis</NavLink>
             </div>
           )}
         </div>

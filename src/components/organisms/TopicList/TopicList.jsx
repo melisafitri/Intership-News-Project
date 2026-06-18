@@ -35,7 +35,7 @@ function TopicList() {
         ))}
       </ul>
 
-      <button className="topic-list-btn">See More Topic</button>
+      <button className="topic-list-btn" onClick={() => navigate("/interest-topic")}>See More Topic</button>
     </div>
   );
 }

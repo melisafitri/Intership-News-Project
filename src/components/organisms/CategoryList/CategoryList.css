@@ -29,7 +29,6 @@
 }
 
 .category-list__dropdown {
-  position: relative;
   display: flex;
   align-items: center;
 }
@@ -44,9 +43,9 @@
 
 .category-list__dropdown-menu {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50px;
+  right: 200px;
+  left: auto;
   margin-top: 0;
   background-color: #3a3a3a;
   border-radius: 12px;

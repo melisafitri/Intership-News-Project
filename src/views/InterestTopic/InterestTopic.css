@@ -1,0 +1,35 @@
+.interest-topic {
+  padding: 0 16px;
+  width: 100%;
+}
+
+.interest-topic__title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.interest-topic__section {
+  margin-bottom: 40px;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 24px;
+}
+
+.interest-topic__section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.interest-topic__tag {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.interest-topic__count {
+  color: #aaaaaa;
+  font-size: 13px;
+}
