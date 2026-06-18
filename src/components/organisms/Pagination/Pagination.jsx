@@ -1,3 +1,4 @@
+import PaginationItem from "../../atoms/PaginationItem/PaginationItem";
 import "./Pagination.css";
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
@@ -5,31 +6,29 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   return (
     <div className="pagination">
-      <button
-        className="pagination-btn"
+      <PaginationItem
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         &#8249;
-      </button>
+      </PaginationItem>
 
       {pages.map((page) => (
-        <button
+        <PaginationItem
           key={page}
-          className={`pagination-btn ${currentPage === page ? "active" : ""}`}
+          active={currentPage === page}
           onClick={() => onPageChange(page)}
         >
           {page}
-        </button> 
+        </PaginationItem>
       ))}
 
-      <button
-        className="pagination-btn"
+      <PaginationItem
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         &#8250;
-      </button>
+      </PaginationItem>
     </div>
   );
 }
