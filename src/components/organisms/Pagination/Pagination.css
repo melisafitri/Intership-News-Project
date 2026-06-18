@@ -5,33 +5,3 @@
   gap: 6px;
   margin: 20px 0;
 }
-
-.pagination-btn {
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 6px;
-  background-color: #2a2a2a;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pagination-btn:hover {
-  background-color: #3a3a3a;
-}
-
-.pagination-btn.active {
-  background-color: #1fa3f4;
-  color: white;
-  font-weight: 700;
-}
-
-.pagination-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}

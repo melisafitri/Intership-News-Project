@@ -23,8 +23,7 @@
   align-items: flex-start;
 }
 
-<<<<<<< HEAD
-=======
+
 .topic-template__left {
   flex: 3;
   min-width: 0;
@@ -114,7 +113,7 @@
   margin: 0;
 }
 
->>>>>>> cb54fbe34aa7616e42ca053943128ddc0687b728
+
 .topic-template__footer {
   margin-top: auto;
 }
