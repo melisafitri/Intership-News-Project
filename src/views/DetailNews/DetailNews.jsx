@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import DetailNewsTemplate from "../../templates/DetailNewsTemplate/DetailNewsTemplate";
 import Title from "../../components/atoms/Title/Title";
 import Source from "../../components/atoms/Source/Source";
@@ -39,24 +40,28 @@ const relatedNews = [
 ];
 
   function DetailNews() {
+  const { state } = useLocation();
+  const img = state?.img || drumpImage;
+  const title = state?.title || "Perampok Gasak Uang Nasabah Bank Rp850 Juta di Cirebon, Sebar Uang ke Jalan";
+  const source = state?.source || "iNews";
+  const category = state?.category || "Nasional";
+  const date = state?.date || "Kamis, 18 Juni 2026 - 18:52";
+  const minutes = state?.minutes || 5;
+
   return (
     <DetailNewsTemplate>
       <div className="detail-news">
         <div className="detail-news__container">
           <div className="detail-news__image-wrapper">
-  <img
-    className="detail-news__image"
-    src={drumpImage}  
-    alt="CCTV Perampokan Cirebon"
-  />
-  </div>
+            <img className="detail-news__image" src={img} alt={title} />
+          </div>
 
           <div className="detail-news__content">
-            <Title text="Perampok Gasak Uang Nasabah Bank Rp850 Juta di Cirebon, Sebar Uang ke Jalan" />
+            <Title text={title} />
 
             <div className="detail-news__meta">
-              <Source text="Nasional | iNews | Kamis, 18 Juni 2026 - 18:52 |" />
-              <ReadingTime minutes={5} />
+              <Source text={`${category} | ${source} | ${date} |`} />
+              <ReadingTime minutes={minutes} />
             </div>
 
             <div className="detail-news__social">

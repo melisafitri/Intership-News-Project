@@ -74,7 +74,6 @@ const InterestTopic = () => {
   return (
     <InterestTopicTemplate>
       <div className="interest-topic">
-        <h1 className="interest-topic__title">Daftar Topik</h1>
         {TOPICS.map((topic) => (
           <div key={topic.id} className="interest-topic__section">
             <div className="interest-topic__section-header">

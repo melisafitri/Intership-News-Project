@@ -40,6 +40,15 @@
   justify-content: flex-start;
   gap: 6px;
   text-align: left;
-  flex: 1; 
-  min-width: 0; 
+  flex: 1;
+  min-width: 0;
+}
+
+.small-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 11px;
+  color: #aaa;
 }

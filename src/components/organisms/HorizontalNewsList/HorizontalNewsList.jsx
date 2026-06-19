@@ -31,9 +31,12 @@ const HorizontalNewsList = ({ title = "", news = [] }) => {
           {news.map((item) => (
             <div className="horizontal-news__item" key={item.id}>
               <BigCard
+                id={item.id}
                 img={item.image}
                 title={item.title}
                 source={item.source}
+                category={item.category}
+                date={item.date}
                 readingTime={item.readingTime}
                 description={item.description}
               />
