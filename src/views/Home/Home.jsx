@@ -29,6 +29,7 @@ const CATEGORY_LABELS = {
 
 const ITEMS_PER_PAGE = 10;
 const FIRST_BATCH = 5;
+const TOTAL_ARTICLES = 120; // <-- sesuaikan nanti dengan jumlah berita asli (dari API)
 
 const HORIZONTAL_PLACEHOLDER = [
   { id: "h1", image: imgKereta, title: "Blackout Sumatra", source: "", readingTime: null, description: "" },
@@ -40,7 +41,7 @@ const HORIZONTAL_PLACEHOLDER = [
 
 const Home = () => {
 
-  const [searchParams,setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page");
   const { slug } = useParams();
   const [slides, setSlides] = useState([
@@ -61,15 +62,15 @@ const Home = () => {
     { id: 9, image: imgKereta, title: "Persib Hattrick Juara BRI Liga 1, Bojan Hodak Ungkap Rahasianya", source: "okezone", readingTime: 3, description: "Pelatih Persib membeberkan strategi kunci di balik keberhasilan Maung Bandung meraih tiga gelar beruntun." },
     { id: 10, image: imgDrump, title: "Blackout Sumatra: PLN Pastikan Pemulihan Listrik Rampung Sebelum Malam", source: "sindonews", readingTime: 4, description: "PLN bergerak cepat memulihkan pasokan listrik di sejumlah wilayah Sumatra yang mengalami pemadaman massal." },
   ]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
+  const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
+  const totalPages = Math.ceil(TOTAL_ARTICLES / ITEMS_PER_PAGE);
 
   const activeSlug = slug || "berita-utama";
   const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
 
   useEffect(() => {
     console.log("ini page active", page)
-  },[page])
+  }, [page])
 
   const clickPagination = (destinationPage) => {
     searchParams.set("page", destinationPage);
@@ -79,6 +80,8 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPage(1);
+    searchParams.set("page", 1);
+    setSearchParams(searchParams);
   }, [activeSlug]);
 
   return (
