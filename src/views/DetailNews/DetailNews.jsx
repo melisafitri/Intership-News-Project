@@ -4,6 +4,7 @@ import Title from "../../components/atoms/Title/Title";
 import Source from "../../components/atoms/Source/Source";
 import SocialMediaIcon from "../../components/atoms/SocialMediaIcon/SocialMediaIcon";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
+import drumpImage from "../../assets/images/drump.png";
 import "./DetailNews.css";
 
 const relatedNews = [
@@ -36,18 +37,18 @@ const relatedNews = [
   },
 ];
 
-function DetailNews() {
+  function DetailNews() {
   return (
     <DetailNewsTemplate>
       <div className="detail-news">
         <div className="detail-news__container">
           <div className="detail-news__image-wrapper">
-            <img
-              className="detail-news__image"
-              src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=900&auto=format&fit=crop"
-              alt="CCTV Perampokan Cirebon"
-            />
-          </div>
+  <img
+    className="detail-news__image"
+    src={drumpImage}  
+    alt="CCTV Perampokan Cirebon"
+  />
+  </div>
 
           <div className="detail-news__content">
             <Title text="Perampok Gasak Uang Nasabah Bank Rp850 Juta di Cirebon, Sebar Uang ke Jalan" />

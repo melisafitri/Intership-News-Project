@@ -36,7 +36,7 @@
   color: #ffffff;
   margin-top: 8px;
   margin-bottom: 12px;
-  display: block; /* Override line clamp from atom component */
+  display: block; 
   -webkit-line-clamp: unset;
   overflow: visible;
 }
@@ -68,7 +68,7 @@
   color: #ffffff;
 }
 
-/* Baca Juga styling */
+
 .detail-news__baca-juga {
   background-color: #1a1a1a;
   border-left: 4px solid #29b6f6;
@@ -100,7 +100,7 @@
   text-decoration: underline;
 }
 
-/* Related list sections */
+
 .detail-news__related-list {
   margin-top: 48px;
   border-top: 1px solid #333;
