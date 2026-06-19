@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./BannerCarousel.css";
+import ReadingTime from "../../atoms/ReadingTime/ReadingTime";
 
 const BannerCarousel = ({ slides = [] }) => {
   const [current, setCurrent] = useState(0);
@@ -45,6 +46,7 @@ const BannerCarousel = ({ slides = [] }) => {
             {slide.category}
             {slide.source && ` | ${slide.source}`}
             {slide.date && ` | ${slide.date}`}
+            {slide.readingTime && <> | <ReadingTime minutes={slide.readingTime} /></>}
           </div>
         </div>
       )}

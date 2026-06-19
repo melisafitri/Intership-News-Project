@@ -1,9 +1,18 @@
-import React, { useRef } from "react";
-import SmallCard from "../../molecules/SmallCard/SmallCard";
+import React, { useRef, useState } from "react";
+import BigCard from "../../molecules/BigCard/BigCard";
 import "./HorizontalNewsList.css";
 
 const HorizontalNewsList = ({ title = "", news = [] }) => {
   const scrollRef = useRef(null);
+  const [scrollX, setScrollX] = useState(0);
+  const [reachedEnd, setReachedEnd] = useState(false);
+
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setScrollX(el.scrollLeft);
+    setReachedEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
+  };
 
   const scroll = (dir) => {
     scrollRef.current?.scrollBy({ left: dir === "left" ? -320 : 320, behavior: "smooth" });
@@ -13,26 +22,27 @@ const HorizontalNewsList = ({ title = "", news = [] }) => {
 
   return (
     <section className="horizontal-news">
-      <div className="horizontal-news__header">
-        <h2 className="horizontal-news__title">{title}</h2>
-        <div className="horizontal-news__arrows">
-          <button onClick={() => scroll("left")}>&#8249;</button>
-          <button onClick={() => scroll("right")}>&#8250;</button>
+      {title && <h2 className="horizontal-news__title">{title}</h2>}
+      <div className="horizontal-news__track">
+        {scrollX > 0 && (
+          <button className="horizontal-news__btn horizontal-news__btn--left" onClick={() => scroll("left")}>&#8249;</button>
+        )}
+        <div className="horizontal-news__list" ref={scrollRef} onScroll={handleScroll}>
+          {news.map((item) => (
+            <div className="horizontal-news__item" key={item.id}>
+              <BigCard
+                img={item.image}
+                title={item.title}
+                source={item.source}
+                readingTime={item.readingTime}
+                description={item.description}
+              />
+            </div>
+          ))}
         </div>
-      </div>
-      <div className="horizontal-news__list" ref={scrollRef}>
-        {news.map((item) => (
-          <div className="horizontal-news__item" key={item.id}>
-            <SmallCard
-              id={item.id}
-              img={item.image}
-              title={item.title}
-              source={item.source}
-              description={item.description}
-              minutes={item.readingTime}
-            />
-          </div>
-        ))}
+        {!reachedEnd && (
+          <button className="horizontal-news__btn horizontal-news__btn--right" onClick={() => scroll("right")}>&#8250;</button>
+        )}
       </div>
     </section>
   );

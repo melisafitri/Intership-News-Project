@@ -8,7 +8,7 @@ function BigCard({ img, title, source, readingTime, description }) {
   return (
     <div className="big-card">
       <div className="big-card-img">
-        <img src={img} alt={title} />
+        {img ? <img src={img} alt={title} /> : <div className="big-card-placeholder" />}
       </div>
       <div className="big-card-info">
         <Title text={title} />

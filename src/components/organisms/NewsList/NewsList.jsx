@@ -2,12 +2,13 @@ import React from "react";
 import SmallCard from "../../molecules/SmallCard/SmallCard";
 import "./NewsList.css";
 
-const NewsList = ({ news = [] }) => {
-  if (news.length === 0) return null;
+const NewsList = ({ news = [], offset = 0, limit }) => {
+  const items = limit ? news.slice(offset, offset + limit) : news.slice(offset);
+  if (items.length === 0) return null;
 
   return (
     <div className="news-list">
-      {news.map((item) => (
+      {items.map((item) => (
         <SmallCard
           key={item.id}
           img={item.image}
@@ -17,6 +18,7 @@ const NewsList = ({ news = [] }) => {
           minutes={item.readingTime}
         />
       ))}
+
     </div>
   );
 };
