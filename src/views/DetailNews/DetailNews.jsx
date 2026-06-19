@@ -55,10 +55,10 @@ function DetailNews() {
             <Source text="Nasional | iNews | Kamis, 18 Juni 2026 - 18:52" />
 
             <div className="detail-news__social">
-              <SocialMediaIcon type="facebook" />
-              <SocialMediaIcon type="twitter" />
-              <SocialMediaIcon type="instagram" />
-              <SocialMediaIcon type="youtube" />
+              <SocialMediaIcon type="twitter" href="https://x.com/rctiplus" />
+          <SocialMediaIcon type="facebook" href="https://www.facebook.com/RCTIPlusOfficial/" />
+          <SocialMediaIcon type="instagram" href="https://www.instagram.com/rctiplusofficial/" />
+          <SocialMediaIcon type="youtube" href="https://www.youtube.com/channel/UCDR9KL8jZnz0qcqVoU6lIMA" />
             </div>
 
             <div className="detail-news__body">
