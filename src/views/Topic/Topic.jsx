@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import Pagination from "../../components/organisms/Pagination/Pagination";
@@ -46,11 +46,26 @@ const ITEMS_PER_PAGE = 4;
 const Topic = () => {
   const location = useLocation();
   const { slug } = useParams();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const page = searchParams.get("page");
+  const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
 
   const topicLabel = location.state?.topicLabel || slug?.replace(/-/g, " ");
   const totalArticles = 66;
   const totalPages = Math.ceil(totalArticles / ITEMS_PER_PAGE);
+
+  const clickPagination = (destinationPage) => {
+    searchParams.set("page", destinationPage);
+    setSearchParams(searchParams);
+    setCurrentPage(destinationPage);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+    searchParams.set("page", 1);
+    setSearchParams(searchParams);
+  }, [slug]);
 
   return (
     <TopicTemplate>
@@ -65,7 +80,7 @@ const Topic = () => {
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={setCurrentPage}
+          onPageChange={clickPagination}
         />
       </div>
 
