@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import CategoryTemplate from "../../templates/CategoryTemplate/CategoryTemplate";
 import BannerCarousel from "../../components/organisms/BannerCarousel/BannerCarousel";
 import NewsList from "../../components/organisms/NewsList/NewsList";
@@ -39,6 +39,9 @@ const HORIZONTAL_PLACEHOLDER = [
 ];
 
 const Home = () => {
+
+  const [searchParams,setSearchParams] = useSearchParams();
+  const page = searchParams.get("page");
   const { slug } = useParams();
   const [slides, setSlides] = useState([
     { id: "s1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
@@ -59,26 +62,24 @@ const Home = () => {
     { id: 10, image: imgDrump, title: "Blackout Sumatra: PLN Pastikan Pemulihan Listrik Rampung Sebelum Malam", source: "sindonews", readingTime: 4, description: "PLN bergerak cepat memulihkan pasokan listrik di sejumlah wilayah Sumatra yang mengalami pemadaman massal." },
   ]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(10);
 
   const activeSlug = slug || "berita-utama";
   const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
 
   useEffect(() => {
+    console.log("ini page active", page)
+  },[page])
+
+  const clickPagination = (destinationPage) => {
+    searchParams.set("page", destinationPage);
+    setSearchParams(searchParams);
+    setCurrentPage(destinationPage);
+  }
+
+  useEffect(() => {
     setCurrentPage(1);
   }, [activeSlug]);
-
-  useEffect(() => {
-    // TODO: fetch slides berdasarkan activeSlug dari API
-  }, [activeSlug]);
-
-  useEffect(() => {
-    // TODO: fetch news berdasarkan activeSlug dan currentPage
-    // contoh: fetchNewsByCategory(activeSlug, { page: currentPage, limit: ITEMS_PER_PAGE }).then(res => {
-    //   setNews(res.data);
-    //   setTotalPages(res.totalPages);
-    // });
-  }, [activeSlug, currentPage]);
 
   return (
     <CategoryTemplate>
@@ -91,7 +92,7 @@ const Home = () => {
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={setCurrentPage}
+            onPageChange={clickPagination}
           />
         </div>
         <aside className="home__sidebar">
