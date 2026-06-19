@@ -1,0 +1,127 @@
+.detail-news {
+  background: #252525;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.detail-news__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px 48px;
+}
+
+.detail-news__image-wrapper {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.detail-news__image {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+.detail-news__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-news__title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  display: block; /* Override line clamp from atom component */
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.detail-news__content .source {
+  color: #888888;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.detail-news__social {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.detail-news__body {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.detail-news__body p {
+  margin-bottom: 20px;
+}
+
+.detail-news__body strong {
+  color: #ffffff;
+}
+
+/* Baca Juga styling */
+.detail-news__baca-juga {
+  background-color: #1a1a1a;
+  border-left: 4px solid #29b6f6;
+  padding: 12px 16px;
+  margin: 24px 0;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.baca-juga__label {
+  color: #29b6f6;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.baca-juga__link {
+  color: #29b6f6;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.baca-juga__link:hover {
+  text-decoration: underline;
+}
+
+/* Related list sections */
+.detail-news__related-list {
+  margin-top: 48px;
+  border-top: 1px solid #333;
+  padding-top: 32px;
+}
+
+@media (max-width: 768px) {
+  .detail-news__container {
+    padding: 0 16px 32px;
+  }
+
+  .detail-news__title {
+    font-size: 22px;
+  }
+
+  .detail-news__body {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .baca-juga__link {
+    font-size: 13px;
+  }
+}

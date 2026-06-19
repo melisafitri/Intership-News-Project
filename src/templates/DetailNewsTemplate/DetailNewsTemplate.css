@@ -1,0 +1,19 @@
+.detail-news-template {
+  min-height: 100vh;
+  background-color: #252525;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-news-template__header {
+  width: 100%;
+}
+
+.detail-news-template__content {
+  flex: 1;
+}
+
+.detail-news-template__footer {
+  margin-top: auto;
+}

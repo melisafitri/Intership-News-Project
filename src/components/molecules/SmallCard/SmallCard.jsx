@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./SmallCard.css";
 import Title from "../../atoms/Title/Title";
 import Source from "../../atoms/Source/Source";
@@ -17,7 +18,7 @@ function SmallCard({ img, title, source, description, minutes }) {
         <ReadingTime minutes={minutes} />
       </div>
     </div>
-  );pm 
+  );
 }
 
 export default SmallCard;
