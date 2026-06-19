@@ -2,6 +2,7 @@ import React from "react";
 import DetailNewsTemplate from "../../templates/DetailNewsTemplate/DetailNewsTemplate";
 import Title from "../../components/atoms/Title/Title";
 import Source from "../../components/atoms/Source/Source";
+import ReadingTime from "../../components/atoms/ReadingTime/ReadingTime";
 import SocialMediaIcon from "../../components/atoms/SocialMediaIcon/SocialMediaIcon";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
 import drumpImage from "../../assets/images/drump.png";
@@ -53,7 +54,10 @@ const relatedNews = [
           <div className="detail-news__content">
             <Title text="Perampok Gasak Uang Nasabah Bank Rp850 Juta di Cirebon, Sebar Uang ke Jalan" />
 
-            <Source text="Nasional | iNews | Kamis, 18 Juni 2026 - 18:52" />
+            <div className="detail-news__meta">
+              <Source text="Nasional | iNews | Kamis, 18 Juni 2026 - 18:52 |" />
+              <ReadingTime minutes={5} />
+            </div>
 
             <div className="detail-news__social">
               <SocialMediaIcon type="twitter" href="https://x.com/rctiplus" />

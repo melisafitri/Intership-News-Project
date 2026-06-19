@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./BannerCarousel.css";
 import ReadingTime from "../../atoms/ReadingTime/ReadingTime";
 
@@ -22,34 +23,36 @@ const BannerCarousel = ({ slides = [] }) => {
 
   return (
     <div className="carousel">
-      <div
-        className="carousel-track"
-        style={{ transform: `translateX(-${current * 100}%)` }}
-      >
-        {slides.map((s) => (
-          <div className="carousel-slide" key={s.id}>
-            {s.image ? (
-              <img src={s.image} alt={s.title} />
-            ) : (
-              <div className="carousel-placeholder carousel-placeholder--visible" />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="carousel-overlay" />
-
-      {slide?.title && (
-        <div className="carousel-text">
-          <h1>{slide.title}</h1>
-          <div className="carousel-meta">
-            {slide.category}
-            {slide.source && ` | ${slide.source}`}
-            {slide.date && ` | ${slide.date}`}
-            {slide.readingTime && <> | <ReadingTime minutes={slide.readingTime} /></>}
-          </div>
+      <NavLink to={`/detail/${slide?.id}`} className="carousel-link">
+        <div
+          className="carousel-track"
+          style={{ transform: `translateX(-${current * 100}%)` }}
+        >
+          {slides.map((s) => (
+            <div className="carousel-slide" key={s.id}>
+              {s.image ? (
+                <img src={s.image} alt={s.title} />
+              ) : (
+                <div className="carousel-placeholder carousel-placeholder--visible" />
+              )}
+            </div>
+          ))}
         </div>
-      )}
+
+        <div className="carousel-overlay" />
+
+        {slide?.title && (
+          <div className="carousel-text">
+            <h1>{slide.title}</h1>
+            <div className="carousel-meta">
+              {slide.category}
+              {slide.source && ` | ${slide.source}`}
+              {slide.date && ` | ${slide.date}`}
+              {slide.readingTime && <> | <ReadingTime minutes={slide.readingTime} /></>}
+            </div>
+          </div>
+        )}
+      </NavLink>
 
       <div className="carousel-dots">
         {slides.map((_, i) => (

@@ -47,6 +47,27 @@
   margin-bottom: 16px;
 }
 
+.detail-news__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.detail-news__meta .source {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.detail-news__meta .reading-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #888888;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 .detail-news__social {
   display: flex;
   gap: 12px;
@@ -106,6 +127,7 @@
   border-top: 1px solid #333;
   padding-top: 32px;
 }
+
 
 @media (max-width: 768px) {
   .detail-news__container {
