@@ -31,23 +31,24 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const label = CATEGORY_LABELS[slug] || slug?.replace(/-/g, " ");
+  const activeSlug = slug || "berita-utama";
+  const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [slug]);
+  }, [activeSlug]);
 
   useEffect(() => {
-    // TODO: fetch slides berdasarkan slug kategori dari API
-  }, [slug]);
+    // TODO: fetch slides berdasarkan activeSlug dari API
+  }, [activeSlug]);
 
   useEffect(() => {
-    // TODO: fetch news berdasarkan slug kategori dan currentPage
-    // contoh: fetchNewsByCategory(slug, { page: currentPage, limit: ITEMS_PER_PAGE }).then(res => {
+    // TODO: fetch news berdasarkan activeSlug dan currentPage
+    // contoh: fetchNewsByCategory(activeSlug, { page: currentPage, limit: ITEMS_PER_PAGE }).then(res => {
     //   setNews(res.data);
     //   setTotalPages(res.totalPages);
     // });
-  }, [slug, currentPage]);
+  }, [activeSlug, currentPage]);
 
   return (
     <CategoryTemplate>
