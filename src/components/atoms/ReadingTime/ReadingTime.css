@@ -10,4 +10,7 @@
   width: 12px;
   height: 12px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
+
+
