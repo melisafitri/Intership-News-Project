@@ -37,7 +37,7 @@ const HorizontalNewsList = ({ title = "", news = [] }) => {
                 source={item.source}
                 category={item.category}
                 date={item.date}
-                readingTime={item.readingTime}
+                minutes={item.readingTime}
                 description={item.description}
               />
             </div>

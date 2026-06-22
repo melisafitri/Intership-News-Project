@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
-import BigCardList from "../../components/organisms/BigCardList/BigCardList";
 import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import Source from "../../components/atoms/Source/Source";
@@ -81,7 +80,6 @@ const Topic = () => {
           <p className="topic__total">Total {totalArticles} Articles</p>
         </div>
 
-        <BigCardList news={DUMMY_NEWS} />
         <NewsList news={DUMMY_NEWS} />
 
         <Pagination

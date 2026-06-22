@@ -6,9 +6,8 @@
 }
 
 .topic__right {
-  flex: 1.5;
-  min-width: 0;
-  padding-top: 10px;
+  width: 280px;
+  flex-shrink: 0;
 }
 
 .topic__result-header {
