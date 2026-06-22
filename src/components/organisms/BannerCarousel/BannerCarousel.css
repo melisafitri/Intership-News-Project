@@ -55,6 +55,10 @@
   pointer-events: none;
 }
 
+.carousel:hover .carousel-text {
+  color: #1fa3f4;
+}
+
 .carousel-text {
   position: absolute;
   left: 0;
