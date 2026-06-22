@@ -14,11 +14,9 @@ function SmallCard({ id, img, title, source, description, minutes, date }) {
       <div className="small-card-info">
         <Title text={title} />
         <Source text={source} />
-        <div className="small-card-meta">
-          {date && <span className="small-card-date">{date}</span>}
-          {minutes && <span className="small-card-date"> | waktu baca {minutes} menit</span>}
-        </div>
+        {date && <p className="small-card-date">{date}</p>}
         <Description text={description} />
+        <ReadingTime text={`waktu baca ${minutes} menit`} />
       </div>
     </NavLink>
   );
