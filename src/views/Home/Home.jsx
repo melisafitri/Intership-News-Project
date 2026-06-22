@@ -32,11 +32,12 @@ const FIRST_BATCH = 5;
 const TOTAL_ARTICLES = 120; // <-- sesuaikan nanti dengan jumlah berita asli (dari API)
 
 const HORIZONTAL_PLACEHOLDER = [
-  { id: "h1", image: imgKereta, title: "Blackout Sumatra", source: "", readingTime: null, description: "" },
-  { id: "h2", image: imgDemo, title: "Persib Hattrick Juara", source: "", readingTime: null, description: "" },
-  { id: "h3", image: imgKemarau, title: "Waspada Begal", source: "", readingTime: null, description: "" },
-  { id: "h4", image: imgDrump, title: "Arsenal Juara Premier League", source: "", readingTime: null, description: "" },
-  { id: "h5", image: imgKereta, title: "Update Situasi TimTeng", source: "", readingTime: null, description: "" },
+  { id: "h1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
+  { id: "h1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
+  { id: "h2", image: imgDemo, title: "Selain Bundaran HI, Simak Titik Demo Mahasiswa Hari Ini di Jakarta", category: "Berita Utama", source: "iNews", date: "Jum'at, 12 Juni 2026", readingTime: 2 },
+  { id: "h3", image: imgKemarau, title: "Gubernur BI Yakin Rupiah Terus Menguat, Ini Strateginya", category: "Ekonomi", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 4 },
+  { id: "h4", image: imgDrump, title: "Arsenal Resmi Juara Premier League 2025/2026 Usai Tottenham Kalah", category: "Olahraga", source: "okezone", date: "Rabu, 17 Juni 2026", readingTime: 4 },
+  { id: "h5", image: imgDrump, title: "Arsenal Resmi Juara Premier League 2025/2026 Usai Tottenham Kalah", category: "Olahraga", source: "okezone", date: "Rabu, 17 Juni 2026", readingTime: 4 },
 ];
 
 const Home = () => {

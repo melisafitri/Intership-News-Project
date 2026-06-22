@@ -12,12 +12,13 @@ function BigCard({ id,img, title, source, description, minutes, category, date, 
       <div className="big-card__overlay" />
       <div className="big-card__info">
         <p className="big-card__title">{title}</p>
-        <Description text={description} />
         <div className="big-card__meta">
           {category && <span>{category}</span>}
           {source && <span>| {source}</span>}
-          {date && <span>| {date}</span>}
-          {minutes && <><span>|</span><ReadingTime minutes={minutes} /></>}
+        </div>
+        <div className="big-card__bottom">
+          {date && <span className="big-card__date">{date}</span>}
+          {minutes && <ReadingTime text={`waktu baca ${minutes} menit`} />}
         </div>
       </div>
     </NavLink>

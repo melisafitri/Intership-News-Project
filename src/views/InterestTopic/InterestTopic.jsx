@@ -13,7 +13,7 @@ const TOPICS = [
     label: "Blackout Sumatra",
     count: 24,
     news: [
-      { id: "bs1", image: imgKemarau, title: "PLN Pastikan Pemulihan Listrik Sumatra Rampung Sebelum Malam", source: "sindonews", readingTime: 4, description: "" },
+      { id: "bs1", image: imgKemarau, title: "Gubernur BI Yakin Rupiah Terus Menguat, Ini Strateginya", category: "Ekonomi", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 4 },
       { id: "bs2", image: imgKereta, title: "Blackout Sumatra Berdampak ke Ribuan Pelanggan di 5 Provinsi", source: "okezone", readingTime: 3, description: "" },
       { id: "bs3", image: imgDemo, title: "Penyebab Blackout Sumatra Terungkap, Ini Penjelasan PLN", source: "iNews", readingTime: 3, description: "" },
       { id: "bs4", image: imgDrump, title: "Warga Sumatra Keluhkan Kerugian Akibat Pemadaman Massal", source: "okezone", readingTime: 2, description: "" },

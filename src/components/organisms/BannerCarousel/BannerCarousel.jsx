@@ -48,7 +48,7 @@ const BannerCarousel = ({ slides = [] }) => {
               {slide.category}
               {slide.source && ` | ${slide.source}`}
               {slide.date && ` | ${slide.date}`}
-              {slide.readingTime && <> | <ReadingTime minutes={slide.readingTime} /></>}
+              {slide.readingTime && ` | ${slide.readingTime} menit`}
             </div>
           </div>
         )}

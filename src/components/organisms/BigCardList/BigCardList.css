@@ -1,0 +1,16 @@
+.big-card-list {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.big-card-list::-webkit-scrollbar {
+  display: none;
+}
+
+.big-card-list .big-card {
+  width: 200px;
+  min-width: 200px;
+  height: 200px;
+}
