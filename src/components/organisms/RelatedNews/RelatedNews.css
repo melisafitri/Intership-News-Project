@@ -1,19 +1,19 @@
 .related-news {
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  padding: 16px;
-  width: 280px;
+  background-color: transparent;
+  padding: 0;
+  width: 100%;
 }
 
 .related-news__title {
   color: white;
   font-size: 16px;
   font-weight: 700;
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #333;
 }
 
 .related-news__list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
