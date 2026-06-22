@@ -19,6 +19,7 @@ const NewsList = ({ news = [], offset = 0, limit }) => {
           date={item.date}
           description={item.description}
           minutes={item.readingTime}
+          date={item.date}
         />
       ))}
 

@@ -52,3 +52,8 @@
   font-size: 11px;
   color: #aaa;
 }
+.small-card-date {
+  font-size: 12px;
+  color: #888;
+  margin: 2px 0;
+}

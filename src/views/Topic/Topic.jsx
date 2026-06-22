@@ -4,40 +4,45 @@ import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
+import Source from "../../components/atoms/Source/Source";
 import "./Topic.css";
 
 const DUMMY_NEWS = [
   {
     id: 1,
-    image: "https://placehold.co/195x108/1a1a2e/ffffff?text=Berita+1",
+    image: "/src/assets/images/Penangkapan Dadan Hindayana.jpg",
     title: "5 Fakta Penting Kasus Eks Kepala BGN Dadan Hindayana",
     source: "okezone",
-    description: "Kasus eks kepala BGN Dadan Hindayana menjadi sorotan publik.",
+    // description: "Kasus eks kepala BGN Dadan Hindayana menjadi sorotan publik.",
     readingTime: 3,
+    date: "Kamis, 18 Juni 2026 - 18:52",
   },
   {
     id: 2,
-    image: "https://placehold.co/195x108/1a1a2e/ffffff?text=Berita+2",
+    image: "/src/assets/images/4 Fakta Prabowo Copot Dadan Hindayana dari Kepala BGN.jpg",
     title: "4 Fakta Prabowo Copot Dadan Hindayana dari Kepala BGN",
     source: "okezone",
-    description: "Presiden Prabowo resmi mencopot Dadan Hindayana dari jabatannya.",
+    // description: "Presiden Prabowo resmi mencopot Dadan Hindayana dari jabatannya.",
     readingTime: 2,
+    date: "Rabu, 17 Juni 2026 - 14:30",
   },
   {
     id: 3,
-    image: "https://placehold.co/195x108/1a1a2e/ffffff?text=Berita+3",
+    image: "/src/assets/images/LPSK Siap Lindungi Saksi-JC di Kasus Korupsi BGN dan Imipas.jpg",
     title: "LPSK Siap Lindungi Saksi-JC di Kasus Korupsi BGN dan Imipas",
     source: "okezone",
-    description: "LPSK menyatakan siap memberikan perlindungan kepada saksi.",
+    // description: "LPSK menyatakan siap memberikan perlindungan kepada saksi.",
     readingTime: 4,
+    date: "Selasa, 16 Juni 2026 - 10:00",
   },
   {
     id: 4,
-    image: "https://placehold.co/195x108/1a1a2e/ffffff?text=Berita+4",
+    image: "/src/assets/images/LPSK Siap Lindungi Saksi hingga Justice Collaborator Kasus Korupsi BGN.jpg",
     title: "LPSK Siap Lindungi Saksi hingga Justice Collaborator Kasus Korupsi BGN",
     source: "okezone",
-    description: "LPSK akan melindungi justice collaborator dalam kasus ini.",
+    // description: "LPSK akan melindungi justice collaborator dalam kasus ini.",
     readingTime: 3,
+    date: "Senin, 15 Juni 2026 - 09:00",
   },
 ];
 
