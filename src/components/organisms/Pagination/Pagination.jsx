@@ -1,7 +1,7 @@
 import PaginationItem from "../../atoms/PaginationItem/PaginationItem";
 import "./Pagination.css";
 
-function Pagination({ currentPage, totalPages, onPageChange, windowSize = 10 }) {
+function Pagination({ currentPage, totalPages, onPageChange, windowSize = 5 }) {
   const half = Math.floor(windowSize / 2);
   let start = currentPage - half;
   let end = start + windowSize - 1;

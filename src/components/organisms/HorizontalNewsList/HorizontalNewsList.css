@@ -31,7 +31,7 @@
 
 .horizontal-news__btn {
   position: absolute;
-  top: 30%;                /* ubah posisi vertikal di sini */
+  top: 40%;                /* ubah posisi vertikal di sini */
   transform: translateY(-50%);
   z-index: 10;
   background: transparent;
