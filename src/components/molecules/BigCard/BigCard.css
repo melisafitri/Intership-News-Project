@@ -16,6 +16,24 @@
   display: block;
 }
 
+.big-card__title {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 6px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.big-card:hover .big-card__title {
+  color: #1fa3f4;
+}
+
 .big-card__placeholder {
   width: 100%;
   height: 100%;
