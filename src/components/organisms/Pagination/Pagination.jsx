@@ -22,12 +22,11 @@ function Pagination({ currentPage, totalPages, onPageChange, windowSize = 5 }) {
 
   return (
     <div className="pagination">
-      <PaginationItem
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        &#8249;
-      </PaginationItem>
+      {currentPage > 1 && (
+        <PaginationItem onClick={() => onPageChange(currentPage - 1)}>
+          &#8249;
+        </PaginationItem>
+      )}
 
       {pages.map((page) => (
         <PaginationItem
