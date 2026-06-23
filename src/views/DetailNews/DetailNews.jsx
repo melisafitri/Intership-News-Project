@@ -46,7 +46,7 @@ const relatedNews = [
   },
 ];
 
-// FIX: key disamakan jadi "img" supaya cocok dengan RelatedNewsItem
+
 const relatedNewsSidebar = [
   {
     id: 1,
@@ -62,6 +62,12 @@ const relatedNewsSidebar = [
   },
   {
     id: 3,
+    img: "/src/assets/images/gibran.jpeg",
+    title: "Gibran Ajak Mahasiswa Kunker Ende hing...",
+    source: "inews",
+  },
+  {
+    id: 4,
     img: "/src/assets/images/gibran.jpeg",
     title: "Gibran Ajak Mahasiswa Kunker Ende hing...",
     source: "inews",
