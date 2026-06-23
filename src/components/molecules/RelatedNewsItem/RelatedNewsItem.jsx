@@ -1,8 +1,13 @@
+import { NavLink } from "react-router-dom";
 import "./RelatedNewsItem.css";
 
-function RelatedNewsItem({ img, title, source }) {
+function RelatedNewsItem({ id, img, title, source, date, readingTime, category }) {
   return (
-    <div className="related-news-item">
+    <NavLink
+      to={`/detail/${id}`}
+      state={{ img, title, source, date, minutes: readingTime, category }}
+      className="related-news-item"
+    >
       <div className="related-news-item__img">
         <img src={img} alt={title} />
       </div>
@@ -10,7 +15,7 @@ function RelatedNewsItem({ img, title, source }) {
         <h3 className="related-news-item__title">{title}</h3>
         <p className="related-news-item__source">{source}</p>
       </div>
-    </div>
+    </NavLink>
   );
 }
 

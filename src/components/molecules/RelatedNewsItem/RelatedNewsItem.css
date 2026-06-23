@@ -5,6 +5,8 @@
   cursor: pointer;
   padding: 12px 0;
   border-bottom: 1px solid #333;
+  text-decoration: none;
+  color: inherit;
 }
 
 .related-news-item:last-child {
