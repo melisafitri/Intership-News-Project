@@ -98,7 +98,7 @@ function DetailNews() {
               <div className="detail-news__meta">
                 <Source text={`${category} | ${source} | ${date}`} />
                 <span className="detail-news__meta-separator"> | </span>
-                <ReadingTime text={`waktu baca ${minutes} menit`} />
+                <ReadingTime text={`ReadingTime ${minutes} menit`} />
               </div>
 
               <div className="detail-news__social">
