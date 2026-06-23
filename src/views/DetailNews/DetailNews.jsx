@@ -79,8 +79,7 @@ function DetailNews() {
 
   return (
     <DetailNewsTemplate>
-      <div className="detail-news">
-        <div className="detail-news__layout">
+      <div className="detail-news__layout">
 
           <article className="detail-news__container">
             <div className="detail-news__image-wrapper">
@@ -186,7 +185,6 @@ function DetailNews() {
           </aside>
 
         </div>
-      </div>
     </DetailNewsTemplate>
   );
 }
