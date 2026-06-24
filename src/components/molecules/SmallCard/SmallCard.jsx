@@ -19,7 +19,7 @@ function SmallCard({ id, img, title, source, description, minutes, date, categor
         <Title text={title} />
         <Source text={source} />
         <p className="small-card-date">
-          {date}{minutes && ` | waktu baca ${minutes} menit`}
+          {date}{minutes && ` | reading-time ${minutes} menit`}
         </p>
         <Description text={description} />
       </div>
