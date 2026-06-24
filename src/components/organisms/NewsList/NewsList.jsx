@@ -12,13 +12,10 @@ const NewsList = ({ news = [], offset = 0, limit }) => {
         <SmallCard
           key={item.id}
           id={item.id}
-          img={item.image}
+          image={item.image}
           title={item.title}
           category={item.category}
           source={item.source}
-          date={item.date}
-          description={item.description}
-          minutes={item.readingTime}
           date={item.date}
         />
       ))}

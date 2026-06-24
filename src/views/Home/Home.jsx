@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NewsServices } from "../../services/newsService";
 import { useParams, useSearchParams } from "react-router-dom";
 import CategoryTemplate from "../../templates/CategoryTemplate/CategoryTemplate";
 import BannerCarousel from "../../components/organisms/BannerCarousel/BannerCarousel";
@@ -7,6 +8,7 @@ import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/Ho
 import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import "./Home.css";
+/* 
 import imgDemo from "../../assets/images/demo.png";
 import imgDrump from "../../assets/images/drump.png";
 import imgKemarau from "../../assets/images/kemarau.png";
@@ -20,6 +22,7 @@ import imgtimnasnorwegia from "../../assets/images/timnasnorwegia.png";
 import imgsadis from "../../assets/images/sadis.png";
 import imgkpk from "../../assets/images/kpk.png";
 import imgterungkap from "../../assets/images/terungkap.png";
+*/
 
 const CATEGORY_LABELS = {
   "berita-utama": "Berita Utama",
@@ -39,15 +42,17 @@ const CATEGORY_LABELS = {
 const ITEMS_PER_PAGE = 10;
 const FIRST_BATCH = 5;
 
+/* DUMMY HORIZONTAL — dinonaktifkan, data dari API
 const HORIZONTAL_PLACEHOLDER = [
-  { id: "h1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
   { id: "h1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
   { id: "h2", image: imgDemo, title: "Selain Bundaran HI, Simak Titik Demo Mahasiswa Hari Ini di Jakarta", category: "Berita Utama", source: "iNews", date: "Jumat, 12 Juni 2026", readingTime: 2 },
   { id: "h3", image: imgKemarau, title: "Gubernur BI Yakin Rupiah Terus Menguat, Ini Strateginya", category: "Ekonomi", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 4 },
   { id: "h4", image: imgDrump, title: "Arsenal Resmi Juara Premier League 2025/2026 Usai Tottenham Kalah", category: "Olahraga", source: "okezone", date: "Rabu, 17 Juni 2026", readingTime: 4 },
   { id: "h5", image: imgDrump, title: "Arsenal Resmi Juara Premier League 2025/2026 Usai Tottenham Kalah", category: "Olahraga", source: "okezone", date: "Rabu, 17 Juni 2026", readingTime: 4 },
 ];
+*/
 
+/* DUMMY ALL_NEWS — dinonaktifkan, data dari API
 const ALL_NEWS = [
   { id: 1, image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2: Duo Tuan Rumah Masih Memimpin", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026 - 19:10", readingTime: 3, description: "" },
   { id: 2, image: imgDemo, title: "Gubernur BI Yakin Rupiah Terus Menguat, Ini Strateginya", category: "Ekonomi", source: "okezone", date: "Kamis, 18 Juni 2026 - 19:10", readingTime: 4, description: "" },
@@ -77,25 +82,32 @@ const ALL_NEWS = [
   { id: 26, image: imgkpk, title: "KPK Tangkap Pejabat Korupsi, Publik Menunggu Tindak Lanjut Kasus Ini", category: "Nasional", source: "iNews", date: "Kamis, 18 Juni 2026 - 19:10", readingTime: 3, description: "" },
   { id: 27, image: imgterungkap, title: "Kasus Terungkap: Polisi Bongkar Sindikat Kejahatan Internasional", category: "Global", source: "okezone", date: "Kamis, 18 Juni 2026 - 19:10", readingTime: 4, description: "" },
 ];
+*/
 
 const Home = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page");
   const { slug } = useParams();
+  /* DUMMY SLIDES — dinonaktifkan, diisi dari API
   const [slides, setSlides] = useState([
     { id: "s1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
     { id: "s2", image: imgDemo, title: "Selain Bundaran HI, Simak Titik Demo Mahasiswa Hari Ini di Jakarta", category: "Berita Utama", source: "iNews", date: "Jumat, 12 Juni 2026", readingTime: 2 },
     { id: "s3", image: imgKemarau, title: "Gubernur BI Yakin Rupiah Terus Menguat, Ini Strateginya", category: "Ekonomi", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 4 },
     { id: "s4", image: imgDrump, title: "Arsenal Resmi Juara Premier League 2025/2026 Usai Tottenham Kalah", category: "Olahraga", source: "okezone", date: "Rabu, 17 Juni 2026", readingTime: 4 },
   ]);
+  */
   const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
-  const totalPages = Math.ceil(ALL_NEWS.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const newsPerPage = ALL_NEWS.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   const activeSlug = slug || "berita-utama";
   const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
+
+  const { news, loading, error } = NewsServices(activeSlug);
+
+  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const newsPerPage = news.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const slides = news.slice(0, 4);
 
   useEffect(() => {
     console.log("ini page active", page)
@@ -119,7 +131,7 @@ const Home = () => {
         <div className="home__main">
           <BannerCarousel slides={slides} />
           <NewsList news={newsPerPage} limit={FIRST_BATCH} />
-          <HorizontalNewsList title="Trending Topics" news={HORIZONTAL_PLACEHOLDER} />
+          <HorizontalNewsList title="Trending Topics" news={news.slice(0, 5)} />
           <NewsList news={newsPerPage} offset={FIRST_BATCH} />
           <Pagination
             currentPage={currentPage}
@@ -133,6 +145,6 @@ const Home = () => {
       </div>
     </CategoryTemplate>
   );
-};
+}
 
 export default Home;
