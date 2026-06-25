@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {useLocation, useParams, useSearchParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import Pagination from "../../components/organisms/Pagination/Pagination";
@@ -28,14 +28,14 @@ const formatDate = (isoDate) => {
   const date = new Date(isoDate);
   return date.toLocaleDateString("id-ID", {
     weekday: "long",
-    year: "numeric",
-    month: "long",
     day: "numeric",
-}) + " - " + date.toLocaleTimeString("id-ID", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
-}
+    month: "long",
+    year: "numeric",
+  }) + " - " + date.toLocaleTimeString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
 
 const Topic = () => {
   const location = useLocation();
@@ -44,7 +44,6 @@ const Topic = () => {
 
   const page = searchParams.get("page");
   const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
-
   const [allNews, setAllNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -65,21 +64,27 @@ const Topic = () => {
           title: item.title,
           source: "CNN Indonesia",
           category: topicLabel,
-          readingTime: 3,
+          // description: item.contentSnippet,
+          readingTime: Math.ceil(item.contentSnippet?.split(" ").length / 200) || 3,
           date: formatDate(item.isoDate),
           link: item.link,
         }));
         setAllNews(mapped);
       } catch (err) {
-        setError("Gagal memuat berita. Silakan coba lagi.");
+        setError("Gagal memuat berita. Coba lagi nanti.");
       } finally {
         setLoading(false);
       }
     };
 
     fetchNews();
-  }, [slug]);
+  }, [slug, cnnCategory]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+    searchParams.set("page", 1);
+    setSearchParams(searchParams);
+  }, [slug]);
 
   const totalArticles = allNews.length;
   const totalPages = Math.ceil(totalArticles / ITEMS_PER_PAGE);
@@ -92,12 +97,6 @@ const Topic = () => {
     setCurrentPage(destinationPage);
   };
 
-  useEffect(() => {
-    setCurrentPage(1);
-    searchParams.set("page", 1);
-    setSearchParams(searchParams);
-  }, [slug]);
-
   return (
     <TopicTemplate>
       <div className="topic__left">
@@ -109,7 +108,6 @@ const Topic = () => {
         </div>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
-
         {loading ? (
           <p style={{ color: "#aaa", padding: "20px 0" }}>Memuat berita...</p>
         ) : (
@@ -132,18 +130,3 @@ const Topic = () => {
 };
 
 export default Topic;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
