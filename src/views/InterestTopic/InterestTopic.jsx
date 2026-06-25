@@ -5,11 +5,11 @@ import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/Ho
 import "./InterestTopic.css";
 
 const TOPICS = [
-  { id: 1, label: "Nasional", slug: "nasional" },
-  { id: 2, label: "Olahraga", slug: "olahraga" },
-  { id: 3, label: "Teknologi", slug: "teknologi" },
-  { id: 4, label: "Ekonomi", slug: "ekonomi" },
-  { id: 5, label: "Global", slug: "global" },
+  { id: 1, label: "78tahunbomnuklir", slug: "78tahunbomnuklir" },
+  { id: 2, label: "16besarpialadunia", slug: "16besarpialadunia" },
+  { id: 3, label: "1muharam1445h", slug: "1muharam1445h" },
+  { id: 4, label: "20wnikorbantppo League", slug: "20wnikorbantppo League" },
+  { id: 5, label: "69pegawaikemenkeu ", slug: "69pegawaikemenkeu " },
 ];
 
 const TopicSection = ({ label, slug }) => {
