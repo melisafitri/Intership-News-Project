@@ -31,7 +31,7 @@ const BannerCarousel = ({ slides = [] }) => {
           {slides.map((s) => (
             <div className="carousel-slide" key={s.id}>
               {s.image ? (
-                <img src={s.image} alt={s.title} />
+                <img src={s.image?.large ?? s.image} alt={s.title} />
               ) : (
                 <div className="carousel-placeholder carousel-placeholder--visible" />
               )}
@@ -47,7 +47,7 @@ const BannerCarousel = ({ slides = [] }) => {
             <div className="carousel-meta">
               {slide.category}
               {slide.source && ` | ${slide.source}`}
-              {slide.date && ` | ${slide.date}`}
+              {(slide.date ?? slide.isoDate) && ` | ${slide.date ?? slide.isoDate}`}
               {slide.readingTime && ` | reading-time ${slide.readingTime} menit`}
             </div>
           </div>

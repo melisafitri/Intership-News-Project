@@ -32,12 +32,11 @@ const HorizontalNewsList = ({ title = "", news = [] }) => {
             <div className="horizontal-news__item" key={item.id}>
               <BigCard
                 id={item.id}
-                img={item.image}
+                image={item.image}
                 title={item.title}
                 source={item.source}
                 category={item.category}
                 date={item.date}
-                minutes={item.readingTime}
                 description={item.description}
               />
             </div>
