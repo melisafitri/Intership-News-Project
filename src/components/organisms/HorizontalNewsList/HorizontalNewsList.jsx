@@ -38,6 +38,7 @@ const HorizontalNewsList = ({ title = "", news = [] }) => {
                 category={item.category}
                 date={item.date}
                 description={item.description}
+                minutes={item.readingTime}
               />
             </div>
           ))}

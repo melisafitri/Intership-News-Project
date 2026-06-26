@@ -19,6 +19,7 @@ function BigCard({ id, image, title, source, description, minutes, category, dat
         </div>
         <div className="big-card__bottom">
           {date && <span className="big-card__date">{date}</span>}
+          {minutes && <span className="big-card__date"> | reading-time {minutes} menit</span>}
         </div>
       </div>
     </NavLink>

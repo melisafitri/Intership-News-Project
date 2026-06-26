@@ -7,6 +7,27 @@ const headers = {
   "apikey": import.meta.env.VITE_API_KEY,
 };
 
+const estimateReadingTime = (text) => {
+  if (!text) return 1;
+  const wordCount = text.replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length;
+  return Math.ceil(wordCount / 300) || 1;
+};
+
+const formatDate = (date) => {
+  if (!date) return "";
+  const d = new Date(date);
+  return (
+    d.toLocaleDateString("id-ID", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }) +
+    " - " +
+    d.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })
+  );
+};
+
 const CATEGORY_ID_MAP = {
   "berita-utama": 15,
   "terkini": 15,
@@ -51,8 +72,9 @@ export function NewsServices(slug) {
             image: a.image_url,
             category: a.category?.name,
             source: a.news_origin?.origin,
-            date: a.pubdate,
+            date: formatDate(a.pubdate),
             description: a.description ?? "",
+            readingTime: estimateReadingTime(a.content ?? a.description),
           };
         });
         console.log("NewsServices items:", normalized);

@@ -11,25 +11,25 @@ import { useNewsDetail, NewsServices } from "../../services/newsService";
 import drumpImage from "../../assets/images/drump.png";
 import "./DetailNews.css";
 
-const formatDate = (isoDate) => {
-  if (!isoDate) return "";
-  const date = new Date(isoDate);
+const formatDate = (date) => {
+  if (!date) return "";
+  const d = new Date(date);
   return (
-    date.toLocaleDateString("id-ID", {
+    d.toLocaleDateString("id-ID", {
       weekday: "long",
       day: "numeric",
       month: "long",
       year: "numeric",
     }) +
     " - " +
-    date.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })
+    d.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit" })
   );
 };
 
-const estimateReadingTime = (htmlText) => {
-  if (!htmlText) return 5;
-  const wordCount = htmlText.replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length;
-  return Math.ceil(wordCount / 200) || 5;
+const estimateReadingTime = (Text) => {
+  if (!Text) return 1;
+  const wordCount = Text.replace(/<[^>]+>/g, " ").trim().split(/\s+/).filter(Boolean).length;
+  return Math.ceil(wordCount / 300) || 1;
 };
 
 const CATEGORY_NAME_TO_SLUG = {
@@ -59,7 +59,7 @@ function DetailNews() {
   const category = a.category?.name || state?.category || "Nasional";
   const date = formatDate(a.pubdate) || state?.date || "";
   const content = a.content || a.summary || "";
-  const minutes = estimateReadingTime(content) || state?.minutes || 5;
+  const minutes = estimateReadingTime(content) || state?.minutes || 1;
 
   const categorySlug = CATEGORY_NAME_TO_SLUG[category] || "nasional";
   const { news: relatedData } = NewsServices(categorySlug);
@@ -69,8 +69,8 @@ function DetailNews() {
     image: item.image,
     title: item.title,
     source: `${item.category || category} | ${item.source || "inews"}`,
-    date: formatDate(item.date),
-    readingTime: 3,
+    date: item.date,
+    readingTime: item.readingTime,
     link: `/detail/${item.id}`,
   }));
 
@@ -80,8 +80,8 @@ function DetailNews() {
     title: item.title,
     source: item.source || "inews",
     category: item.category || category,
-    date: formatDate(item.date),
-    readingTime: 3,
+    date: item.date,
+    readingTime: item.readingTime,
   }));
 
   if (loading) {
