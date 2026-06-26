@@ -103,7 +103,7 @@ export function useNewsDetail(id) {
     method: 'GET',
     headers: {
     "Accept": "application/json",
-    "Visitor-Id": "Hello World",
+    // "Visitor-Id": "Hello World",
     "apikey": import.meta.env.VITE_API_KEY,
   },
     })
