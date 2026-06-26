@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router-dom";
 import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
-import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import { NewsServices } from "../../services/newsService";
 import "./Topic.css";
@@ -25,11 +24,7 @@ const Topic = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentNews = news.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  const clickPagination = (destinationPage) => {
-    searchParams.set("page", destinationPage);
-    setSearchParams(searchParams);
-    setCurrentPage(destinationPage);
-  };
+
 
   useEffect(() => {
     setCurrentPage(1);
@@ -56,13 +51,7 @@ const Topic = () => {
         ) : (
           <>
             <NewsList news={currentNews} />
-            {totalPages > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={clickPagination}
-              />
-            )}
+            
           </>
         )}
       </div>
