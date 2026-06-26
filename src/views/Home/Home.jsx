@@ -5,7 +5,6 @@ import CategoryTemplate from "../../templates/CategoryTemplate/CategoryTemplate"
 import BannerCarousel from "../../components/organisms/BannerCarousel/BannerCarousel";
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
-import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import "./Home.css";
 /* 
@@ -102,42 +101,31 @@ const Home = () => {
   const activeSlug = slug || "berita-utama";
   const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
 
-  const { news, loading, error } = NewsServices(activeSlug);
+  const { news, loading, error, loadMore, hasMore } = NewsServices(activeSlug);
 
-  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const newsPerPage = news.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   const slides = news.slice(0, 4);
 
   useEffect(() => {
-    console.log("ini page active", page)
-  }, [page])
-
-  const clickPagination = (destinationPage) => {
-    searchParams.set("page", destinationPage);
-    setSearchParams(searchParams);
-    setCurrentPage(destinationPage);
-  }
-
-  useEffect(() => {
-    setCurrentPage(1);
-    searchParams.set("page", 1);
-    setSearchParams(searchParams);
-  }, [activeSlug]);
+    const handleScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
+      if (nearBottom && hasMore && !loading) {
+        loadMore();
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasMore, loading]);
 
   return (
     <CategoryTemplate>
       <div className="home__layout">
         <div className="home__main">
           <BannerCarousel slides={slides} />
-          <NewsList news={newsPerPage} limit={FIRST_BATCH} />
+          <NewsList news={news} limit={FIRST_BATCH} />
           <HorizontalNewsList title="Trending Topics" news={news.slice(0, 5)} />
-          <NewsList news={newsPerPage} offset={FIRST_BATCH} />
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={clickPagination}
-          />
+          <NewsList news={news} offset={FIRST_BATCH} />
+          {loading && <p style={{ textAlign: "center", padding: "20px" }}>Memuat berita...</p>}
         </div>
         <aside className="home__sidebar">
           <TopicList />

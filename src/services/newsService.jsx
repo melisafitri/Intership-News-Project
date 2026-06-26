@@ -46,6 +46,15 @@ export function NewsServices(slug) {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  // reset saat kategori berganti
+  useEffect(() => {
+    setNews([]);
+    setPage(1);
+    setHasMore(true);
+  }, [slug]);
 
   useEffect(() => {
     if (!slug) return;
@@ -53,8 +62,8 @@ export function NewsServices(slug) {
     setError(null);
 
     const categoryId = CATEGORY_ID_MAP[slug] ?? 15;
-    
-    fetch(`${baseUrl}/aggregator/pages/home?category_id=${categoryId}&page=1&limit=10`, {
+
+    fetch(`${baseUrl}/aggregator/pages/home?category_id=${categoryId}&page=${page}&limit=10`, {
     method: 'GET',
     headers: {
     "Accept": "application/json",
@@ -64,6 +73,7 @@ export function NewsServices(slug) {
       .then((res) => res.json())
       .then((result) => {
         const list = result.data?.lists?.data ?? [];
+        const meta = result.data?.lists?.meta;
         const normalized = list.map((item) => {
           const a = item.attributes;
           return {
@@ -77,14 +87,18 @@ export function NewsServices(slug) {
             readingTime: estimateReadingTime(a.content ?? a.description),
           };
         });
-        console.log("NewsServices items:", normalized);
-        setNews(normalized);
+        setNews((prev) => (page === 1 ? normalized : [...prev, ...normalized]));
+        if (meta && meta.current_page >= meta.last_page) setHasMore(false);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [slug]);
+  }, [slug, page]);
 
-  return { news, loading, error };
+  const loadMore = () => {
+    setPage((prev) => prev + 1);
+  };
+
+  return { news, loading, error, loadMore, hasMore };
 }
 
 export function useTrending() {
