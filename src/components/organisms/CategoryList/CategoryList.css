@@ -70,3 +70,19 @@
   background-color: #2a2a2a;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .category-list {
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  /* sembunyikan tab kategori (Berita Utama, Terkini, dst) di mobile — sisakan logo saja */
+  .category-list__items {
+    display: none;
+  }
+
+  .category-list__dropdown-menu {
+    right: 16px;
+  }
+}

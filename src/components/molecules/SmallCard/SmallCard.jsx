@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./SmallCard.css";
+import { handleImageError } from "../../../utils/imageFallback";
 import Title from "../../atoms/Title/Title";
 import Source from "../../atoms/Source/Source";
 import Description from "../../atoms/Description/Description";
@@ -13,7 +14,7 @@ function SmallCard({ id, image, title, source, description, minutes, category, d
       className="small-card"
     >
       <div className="small-card-img">
-        {image ? <img src={image} alt={title} /> : <div className="small-card-placeholder" />}
+        {image ? <img src={image} alt={title} onError={handleImageError} /> : <div className="small-card-placeholder" />}
       </div>
       <div className="small-card-info">
         <Title text={title} />

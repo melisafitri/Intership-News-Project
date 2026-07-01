@@ -29,6 +29,12 @@
   flex: 0 0 280px;
 }
 
+@media (max-width: 480px) {
+  .horizontal-news__item {
+    flex: 0 0 200px;
+  }
+}
+
 .horizontal-news__btn {
   position: absolute;
   top: 40%;                /* ubah posisi vertikal di sini */

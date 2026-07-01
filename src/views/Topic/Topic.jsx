@@ -1,44 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useParams, useSearchParams } from "react-router-dom";
+import React from "react";
+import { useLocation, useParams } from "react-router-dom";
 import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
-import Pagination from "../../components/organisms/Pagination/Pagination";
 import TopicList from "../../components/organisms/TopicList/TopicList";
+import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
 import { NewsServices } from "../../services/newsService";
 import "./Topic.css";
-
-const ITEMS_PER_PAGE = 10;
 
 const Topic = () => {
   const location = useLocation();
   const { slug } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const page = searchParams.get("page");
-  const [currentPage, setCurrentPage] = useState(page ? Number(page) : 1);
 
   const topicLabel = location.state?.topicLabel || slug?.replace(/-/g, " ");
 
   const { news, loading, error } = NewsServices(slug);
 
-  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentNews = news.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-  const clickPagination = (destinationPage) => {
-    searchParams.set("page", destinationPage);
-    setSearchParams(searchParams);
-    setCurrentPage(destinationPage);
-  };
-
-  useEffect(() => {
-    setCurrentPage(1);
-    searchParams.set("page", 1);
-    setSearchParams(searchParams);
-  }, [slug]);
-
   return (
-    <TopicTemplate>
+    <TopicTemplate mobileHeader={<MobileTopBar title={topicLabel} />}>
       <div className="topic__left">
         <div className="topic__result-header">
           <p className="topic__result">Result for # {topicLabel}</p>
@@ -54,16 +32,7 @@ const Topic = () => {
         {loading ? (
           <p style={{ color: "#aaa", padding: "20px 0" }}>Memuat berita...</p>
         ) : (
-          <>
-            <NewsList news={currentNews} />
-            {totalPages > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={clickPagination}
-              />
-            )}
-          </>
+          <NewsList news={news} />
         )}
       </div>
 

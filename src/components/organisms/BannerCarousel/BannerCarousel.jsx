@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./BannerCarousel.css";
 import ReadingTime from "../../atoms/ReadingTime/ReadingTime";
+import { handleImageError } from "../../../utils/imageFallback";
 
 const BannerCarousel = ({ slides = [] }) => {
   const [current, setCurrent] = useState(0);
@@ -31,7 +32,7 @@ const BannerCarousel = ({ slides = [] }) => {
           {slides.map((s) => (
             <div className="carousel-slide" key={s.id}>
               {s.image ? (
-                <img src={s.image?.large ?? s.image} alt={s.title} />
+                <img src={s.image?.large ?? s.image} alt={s.title} onError={handleImageError} />
               ) : (
                 <div className="carousel-placeholder carousel-placeholder--visible" />
               )}

@@ -26,3 +26,14 @@
   font-size: 13px;
   margin: 4px 0 0 0;
 }
+
+@media (max-width: 768px) {
+  .topic__right {
+    display: none;
+  }
+
+  /* judul kategori sudah tampil di MobileTopBar */
+  .topic__result-header {
+    display: none;
+  }
+}

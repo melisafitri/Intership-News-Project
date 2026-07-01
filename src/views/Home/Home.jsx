@@ -6,6 +6,9 @@ import BannerCarousel from "../../components/organisms/BannerCarousel/BannerCaro
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
 import TopicList from "../../components/organisms/TopicList/TopicList";
+import CategorySection from "../../components/organisms/CategorySection/CategorySection";
+import LazySection from "../../components/organisms/CategorySection/LazySection";
+import { useIsMobile } from "../../hooks/useIsMobile";
 import "./Home.css";
 /* 
 import imgDemo from "../../assets/images/demo.png";
@@ -105,7 +108,10 @@ const Home = () => {
 
   const slides = news.slice(0, 4);
 
+  const isMobile = useIsMobile();
+
   useEffect(() => {
+    if (isMobile) return;
     const handleScroll = () => {
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
@@ -115,7 +121,25 @@ const Home = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasMore, loading]);
+  }, [hasMore, loading, isMobile]);
+
+  if (isMobile) {
+    return (
+      <CategoryTemplate>
+        <div className="home__mobile-sections">
+          {Object.entries(CATEGORY_LABELS).map(([categorySlug, categoryLabel], index) =>
+            index < 2 ? (
+              <CategorySection key={categorySlug} slug={categorySlug} label={categoryLabel} />
+            ) : (
+              <LazySection key={categorySlug}>
+                <CategorySection slug={categorySlug} label={categoryLabel} />
+              </LazySection>
+            )
+          )}
+        </div>
+      </CategoryTemplate>
+    );
+  }
 
   return (
     <CategoryTemplate>

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./RelatedNewsItem.css";
+import { handleImageError } from "../../../utils/imageFallback";
 
 function RelatedNewsItem({ id, img, title, source, date, readingTime, category }) {
   return (
@@ -9,7 +10,7 @@ function RelatedNewsItem({ id, img, title, source, date, readingTime, category }
       className="related-news-item"
     >
       <div className="related-news-item__img">
-        <img src={img} alt={title} />
+        <img src={img} alt={title} onError={handleImageError} />
       </div>
       <div className="related-news-item__info">
         <h3 className="related-news-item__title">{title}</h3>

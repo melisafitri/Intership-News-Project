@@ -30,16 +30,17 @@ const formatDate = (date) => {
 
 const CATEGORY_ID_MAP = {
   "berita-utama": 15,
-  "terkini": 15,
-  "nasional": 15,
-  "global": 15,
-  "ekonomi": 15,
-  "olahraga": 15,
-  "seleb": 15,
-  "gaya-hidup": 15,
-  "teknologi": 15,
-  "otomotif": 15,
-  "travel": 15,
+  "terkini": 1,
+  "nasional": 16,
+  "global": 17,
+  "ekonomi": 7,
+  "olahraga": 4,
+  "seleb": 2,
+  "gaya-hidup": 3,
+  "otomotif": 13,
+  "teknologi": 8,
+  "travel": 18,
+  "infografis": 19,
 };
 
 export function NewsServices(slug) {

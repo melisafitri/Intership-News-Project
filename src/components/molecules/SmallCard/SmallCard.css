@@ -57,3 +57,14 @@
   color: #888;
   margin: 2px 0;
 }
+
+@media (max-width: 480px) {
+  .small-card {
+    gap: 10px;
+  }
+
+  .small-card-img {
+    width: 120px;
+    height: 80px;
+  }
+}

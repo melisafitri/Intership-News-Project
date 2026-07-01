@@ -17,3 +17,10 @@
 .detail-news-template__footer {
   margin-top: auto;
 }
+
+@media (max-width: 768px) {
+  /* di mobile navbar kategori diganti MobileTopBar (back + bagikan) */
+  .detail-news-template__header {
+    display: none;
+  }
+}

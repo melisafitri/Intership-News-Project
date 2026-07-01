@@ -7,6 +7,8 @@ import ReadingTime from "../../components/atoms/ReadingTime/ReadingTime";
 import SocialMediaIcon from "../../components/atoms/SocialMediaIcon/SocialMediaIcon";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
 import RelatedNews from "../../components/organisms/RelatedNews/RelatedNews";
+import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
+import { handleImageError } from "../../utils/imageFallback";
 import { useNewsDetail, NewsServices } from "../../services/newsService";
 import drumpImage from "../../assets/images/drump.png";
 import "./DetailNews.css";
@@ -84,9 +86,11 @@ function DetailNews() {
     readingTime: item.readingTime,
   }));
 
+  const mobileHeader = <MobileTopBar showShare shareTitle={title} />;
+
   if (loading) {
     return (
-      <DetailNewsTemplate>
+      <DetailNewsTemplate mobileHeader={mobileHeader}>
         <p style={{ padding: "40px 0", textAlign: "center" }}>Memuat berita...</p>
       </DetailNewsTemplate>
     );
@@ -94,7 +98,7 @@ function DetailNews() {
 
   if (error) {
     return (
-      <DetailNewsTemplate>
+      <DetailNewsTemplate mobileHeader={mobileHeader}>
         <p style={{ padding: "40px 0", textAlign: "center", color: "red" }}>
           Gagal memuat berita. Coba lagi nanti.
         </p>
@@ -103,11 +107,11 @@ function DetailNews() {
   }
 
   return (
-    <DetailNewsTemplate>
+    <DetailNewsTemplate mobileHeader={mobileHeader}>
       <div className="detail-news__layout">
         <article className="detail-news__container">
           <div className="detail-news__image-wrapper">
-            <img className="detail-news__image" src={img} alt={title} />
+            <img className="detail-news__image" src={img} alt={title} onError={handleImageError} />
           </div>
 
           <div className="detail-news__content">

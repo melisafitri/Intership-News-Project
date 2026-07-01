@@ -3,12 +3,14 @@ import CategoryList from "../../components/organisms/CategoryList/CategoryList";
 import Footer from "../../components/organisms/Footer/Footer";
 import "./DetailNewsTemplate.css";
 
-const DetailNewsTemplate = ({ children }) => {
+const DetailNewsTemplate = ({ children, mobileHeader }) => {
   return (
     <div className="detail-news-template">
       <header className="detail-news-template__header">
         <CategoryList />
       </header>
+
+      {mobileHeader}
 
       <main className="detail-news-template__content">
         {children}
