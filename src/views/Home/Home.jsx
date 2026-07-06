@@ -9,6 +9,7 @@ import TopicList from "../../components/organisms/TopicList/TopicList";
 import CategorySection from "../../components/organisms/CategorySection/CategorySection";
 import LazySection from "../../components/organisms/CategorySection/LazySection";
 import StateView from "../../components/molecules/StateView/StateView";
+import { errorStateProps } from "../../utils/errorState";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import "./Home.css";
 /* 
@@ -129,11 +130,7 @@ const Home = () => {
       <CategoryTemplate>
         <div className="home__mobile-sections">
           {error ? (
-            <StateView
-              title="Koneksi bermasalah"
-              message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
-              onRetry={refetch}
-            />
+            <StateView {...errorStateProps(error)} onRetry={refetch} />
           ) : (
             Object.entries(CATEGORY_LABELS).map(([categorySlug, categoryLabel], index) =>
               index < 2 ? (
@@ -155,11 +152,7 @@ const Home = () => {
       <div className="home__layout">
         <div className="home__main">
           {error ? (
-            <StateView
-              title="Koneksi bermasalah"
-              message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
-              onRetry={refetch}
-            />
+            <StateView {...errorStateProps(error)} onRetry={refetch} />
           ) : !loading && news.length === 0 ? (
             <StateView
               title="Berita tidak ditemukan"

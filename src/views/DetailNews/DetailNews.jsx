@@ -100,7 +100,9 @@ function DetailNews() {
     return (
       <DetailNewsTemplate mobileHeader={mobileHeader}>
         <p style={{ padding: "40px 0", textAlign: "center", color: "red" }}>
-          Gagal memuat berita. Coba lagi nanti.
+          {error.status
+            ? `Terjadi kesalahan (kode ${error.status}). Coba lagi nanti.`
+            : "Gagal memuat berita. Periksa koneksi internet Anda."}
         </p>
       </DetailNewsTemplate>
     );

@@ -5,6 +5,7 @@ import NewsList from "../../components/organisms/NewsList/NewsList";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
 import StateView from "../../components/molecules/StateView/StateView";
+import { errorStateProps } from "../../utils/errorState";
 import { NewsServices } from "../../services/newsService";
 import "./Topic.css";
 
@@ -27,11 +28,7 @@ const Topic = () => {
         </div>
 
         {error ? (
-          <StateView
-            title="Koneksi bermasalah"
-            message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
-            onRetry={refetch}
-          />
+          <StateView {...errorStateProps(error)} onRetry={refetch} />
         ) : loading ? (
           <p style={{ color: "#aaa", padding: "20px 0" }}>Memuat berita...</p>
         ) : news.length === 0 ? (

@@ -72,7 +72,14 @@ export function NewsServices(slug) {
     "apikey": import.meta.env.VITE_API_KEY,
   }
 })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          const e = new Error(`Server merespons dengan kode ${res.status}`);
+          e.status = res.status; // kode HTTP (mis. 404, 500)
+          throw e;
+        }
+        return res.json();
+      })
       .then((result) => {
         const list = result.data?.lists?.data ?? [];
         const meta = result.data?.lists?.meta;
@@ -92,7 +99,9 @@ export function NewsServices(slug) {
         setNews((prev) => (page === 1 ? normalized : [...prev, ...normalized]));
         if (meta && meta.current_page >= meta.last_page) setHasMore(false);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) =>
+        setError({ status: err.status ?? null, message: err.message })
+      )
       .finally(() => setLoading(false));
   }, [slug, page, reloadKey]);
 
@@ -128,12 +137,19 @@ export function useTrending() {
         "apikey": import.meta.env.VITE_API_KEY,
       }
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          const e = new Error(`Server merespons dengan kode ${res.status}`);
+          e.status = res.status;
+          throw e;
+        }
+        return res.json();
+      })
       .then((result) => {
         console.log("useTrending result:", result);
         setTrending(result.data ?? []);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => setError({ status: err.status ?? null, message: err.message }))
       .finally(() => setLoading(false));
   }, [reloadKey]);
 
@@ -159,12 +175,19 @@ export function useNewsDetail(id) {
     "apikey": import.meta.env.VITE_API_KEY,
   },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          const e = new Error(`Server merespons dengan kode ${res.status}`);
+          e.status = res.status;
+          throw e;
+        }
+        return res.json();
+      })
       .then((result) => {
         console.log("useNewsDetail result:", result);
         setDetail(result.data ?? null);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => setError({ status: err.status ?? null, message: err.message }))
       .finally(() => setLoading(false));
   }, [id]);
 

@@ -3,6 +3,7 @@ import { NewsServices } from "../../services/newsService";
 import InterestTopicTemplate from "../../templates/InterestTopicTemplate/InterestTopicTemplate";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
 import StateView from "../../components/molecules/StateView/StateView";
+import { errorStateProps } from "../../utils/errorState";
 import "./InterestTopic.css";
 
 const TOPICS = [
@@ -18,7 +19,7 @@ const TopicSection = ({ id, label, slug, onStatus }) => {
 
   // laporkan status topik ini ke induk (InterestTopic)
   useEffect(() => {
-    onStatus(id, { loading, error: !!error, count: news.length });
+    onStatus(id, { loading, error: error || null, count: news.length });
   }, [id, loading, error, news.length, onStatus]);
 
   // status ditangani di level halaman → di sini cukup tampil kalau ada isi
@@ -67,6 +68,7 @@ const InterestTopic = () => {
 
   const allError = allSettled && settled.every((s) => s.error);
   const allEmpty = allSettled && settled.every((s) => !s.error && s.count === 0);
+  const firstError = settled.find((s) => s.error)?.error;
 
   return (
     <InterestTopicTemplate>
@@ -87,11 +89,7 @@ const InterestTopic = () => {
       )}
 
       {allError && (
-        <StateView
-          title="Koneksi bermasalah"
-          message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
-          onRetry={retryAll}
-        />
+        <StateView {...errorStateProps(firstError)} onRetry={retryAll} />
       )}
 
       {!allError && allEmpty && (
