@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CategoryItem from "../../atoms/CategoryItem/CategoryItem";
 import Logo from "../../atoms/Logo/Logo";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
 import "./CategoryList.css";
 
 const CATEGORIES = [
@@ -18,9 +18,13 @@ const CATEGORIES = [
 ];
 
 const CategoryList = () => {
-  const [active, setActive] = useState("Berita Utama");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const location = useLocation();
+
+  // Tentukan kategori aktif berdasarkan URL
+  const activeSlug = slug || "berita-utama";
 
   return (
     <nav className="category-list">
@@ -32,8 +36,8 @@ const CategoryList = () => {
           <CategoryItem
             key={cat.slug}
             label={cat.label}
-            isActive={active === cat.slug}
-            onClick={() => { setActive(cat.slug); navigate(cat.to); }}
+            isActive={activeSlug === cat.slug}
+            onClick={() => navigate(cat.to)}
           />
         ))}
 
