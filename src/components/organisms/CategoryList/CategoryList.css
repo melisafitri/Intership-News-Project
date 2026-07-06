@@ -37,8 +37,18 @@
   color: #fff;
   font-size: 14px;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 6px 16px;
   white-space: nowrap;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  transition: color 0.2s;
+}
+
+/* saat kategori aktif ada di dalam Other (Travel / Infografis) */
+.category-list__dropdown-label--active {
+  color: #f5c518;
+  font-weight: 600;
+  border-color: #f5c518;
 }
 
 .category-list__dropdown-menu {
@@ -69,6 +79,12 @@
 .category-list__dropdown-menu a:hover {
   background-color: #2a2a2a;
   color: white;
+}
+
+/* item di dalam dropdown yang sedang aktif (NavLink otomatis kasih class .active) */
+.category-list__dropdown-menu a.active {
+  color: #f5c518;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

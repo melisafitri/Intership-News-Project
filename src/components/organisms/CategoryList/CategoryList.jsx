@@ -26,6 +26,10 @@ const CategoryList = () => {
   // Tentukan kategori aktif berdasarkan URL
   const activeSlug = slug || "berita-utama";
 
+  // Slug yang ada di dalam dropdown "Other"
+  const OTHER_SLUGS = ["travel", "infografis"];
+  const isOtherActive = OTHER_SLUGS.includes(activeSlug);
+
   return (
     <nav className="category-list">
       <div className="category-list__logo">
@@ -43,7 +47,7 @@ const CategoryList = () => {
 
         <div className="category-list__dropdown">
           <span
-            className="category-list__dropdown-label"
+            className={`category-list__dropdown-label ${isOtherActive ? "category-list__dropdown-label--active" : ""}`}
             onClick={() => setDropdownOpen((prev) => !prev)}
           >
             Other {dropdownOpen ? "▴" : "▾"}
