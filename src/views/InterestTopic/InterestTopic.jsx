@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { NewsServices } from "../../services/newsService";
 import InterestTopicTemplate from "../../templates/InterestTopicTemplate/InterestTopicTemplate";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
+import StateView from "../../components/molecules/StateView/StateView";
 import "./InterestTopic.css";
 
 const TOPICS = [
@@ -12,10 +13,16 @@ const TOPICS = [
   { id: 5, label: "69pegawaikemenkeu ", slug: "69pegawaikemenkeu " },
 ];
 
-const TopicSection = ({ label, slug }) => {
-  const { news, loading } = NewsServices(slug);
-  if (loading) return <p>Memuat {label}...</p>;
-  if (news.length === 0) return null;
+const TopicSection = ({ id, label, slug, onStatus }) => {
+  const { news, loading, error } = NewsServices(slug);
+
+  // laporkan status topik ini ke induk (InterestTopic)
+  useEffect(() => {
+    onStatus(id, { loading, error: !!error, count: news.length });
+  }, [id, loading, error, news.length, onStatus]);
+
+  // status ditangani di level halaman → di sini cukup tampil kalau ada isi
+  if (loading || error || news.length === 0) return null;
 
   return (
     <div className="interest-topic__section">
@@ -29,13 +36,70 @@ const TopicSection = ({ label, slug }) => {
 };
 
 const InterestTopic = () => {
+  const [statuses, setStatuses] = useState({});
+  const [reloadKey, setReloadKey] = useState(0);
+
+  // ambil ulang semua topik: kosongkan status + remount semua section
+  const retryAll = () => {
+    setStatuses({});
+    setReloadKey((k) => k + 1);
+  };
+
+  const handleStatus = useCallback((id, status) => {
+    setStatuses((prev) => {
+      const cur = prev[id];
+      if (
+        cur &&
+        cur.loading === status.loading &&
+        cur.error === status.error &&
+        cur.count === status.count
+      ) {
+        return prev; // tidak berubah → jangan render ulang (cegah loop)
+      }
+      return { ...prev, [id]: status };
+    });
+  }, []);
+
+  const list = Object.values(statuses);
+  const settled = list.filter((s) => !s.loading);
+  const allSettled = settled.length === TOPICS.length;
+  const hasContent = list.some((s) => !s.loading && !s.error && s.count > 0);
+
+  const allError = allSettled && settled.every((s) => s.error);
+  const allEmpty = allSettled && settled.every((s) => !s.error && s.count === 0);
+
   return (
     <InterestTopicTemplate>
       <div className="interest-topic">
         {TOPICS.map((topic) => (
-          <TopicSection key={topic.id} label={topic.label} slug={topic.slug} />
+          <TopicSection
+            key={`${topic.id}-${reloadKey}`}
+            id={topic.id}
+            label={topic.label}
+            slug={topic.slug}
+            onStatus={handleStatus}
+          />
         ))}
       </div>
+
+      {!allSettled && !hasContent && (
+        <p style={{ padding: "20px", color: "#aaa", textAlign: "center" }}>Memuat...</p>
+      )}
+
+      {allError && (
+        <StateView
+          title="Koneksi bermasalah"
+          message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
+          onRetry={retryAll}
+        />
+      )}
+
+      {!allError && allEmpty && (
+        <StateView
+          title="Berita tidak ditemukan"
+          message="Belum ada berita untuk topik-topik ini."
+        />
+      )}
     </InterestTopicTemplate>
   );
 };

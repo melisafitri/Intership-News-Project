@@ -8,6 +8,7 @@ import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/Ho
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import CategorySection from "../../components/organisms/CategorySection/CategorySection";
 import LazySection from "../../components/organisms/CategorySection/LazySection";
+import StateView from "../../components/molecules/StateView/StateView";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import "./Home.css";
 /* 
@@ -104,7 +105,7 @@ const Home = () => {
   const activeSlug = slug || "berita-utama";
   const label = CATEGORY_LABELS[activeSlug] || activeSlug.replace(/-/g, " ");
 
-  const { news, loading, error, loadMore, hasMore } = NewsServices(activeSlug);
+  const { news, loading, error, loadMore, hasMore, refetch } = NewsServices(activeSlug);
 
   const slides = news.slice(0, 4);
 
@@ -127,13 +128,21 @@ const Home = () => {
     return (
       <CategoryTemplate>
         <div className="home__mobile-sections">
-          {Object.entries(CATEGORY_LABELS).map(([categorySlug, categoryLabel], index) =>
-            index < 2 ? (
-              <CategorySection key={categorySlug} slug={categorySlug} label={categoryLabel} />
-            ) : (
-              <LazySection key={categorySlug}>
-                <CategorySection slug={categorySlug} label={categoryLabel} />
-              </LazySection>
+          {error ? (
+            <StateView
+              title="Koneksi bermasalah"
+              message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
+              onRetry={refetch}
+            />
+          ) : (
+            Object.entries(CATEGORY_LABELS).map(([categorySlug, categoryLabel], index) =>
+              index < 2 ? (
+                <CategorySection key={categorySlug} slug={categorySlug} label={categoryLabel} />
+              ) : (
+                <LazySection key={categorySlug}>
+                  <CategorySection slug={categorySlug} label={categoryLabel} />
+                </LazySection>
+              )
             )
           )}
         </div>
@@ -145,11 +154,26 @@ const Home = () => {
     <CategoryTemplate>
       <div className="home__layout">
         <div className="home__main">
-          <BannerCarousel slides={slides} />
-          <NewsList news={news} limit={FIRST_BATCH} />
-          <HorizontalNewsList title="Trending Topics" news={news.slice(0, 5)} />
-          <NewsList news={news} offset={FIRST_BATCH} />
-          {loading && <p style={{ textAlign: "center", padding: "20px" }}>Memuat berita...</p>}
+          {error ? (
+            <StateView
+              title="Koneksi bermasalah"
+              message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
+              onRetry={refetch}
+            />
+          ) : !loading && news.length === 0 ? (
+            <StateView
+              title="Berita tidak ditemukan"
+              message="Belum ada berita untuk kategori ini."
+            />
+          ) : (
+            <>
+              <BannerCarousel slides={slides} />
+              <NewsList news={news} limit={FIRST_BATCH} />
+              <HorizontalNewsList title="Trending Topics" news={news.slice(0, 5)} />
+              <NewsList news={news} offset={FIRST_BATCH} />
+              {loading && <p style={{ textAlign: "center", padding: "20px" }}>Memuat berita...</p>}
+            </>
+          )}
         </div>
         <aside className="home__sidebar">
           <TopicList />

@@ -1,13 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-
-/**
- * Menunda render children sampai wrapper mendekati viewport.
- * Dipakai agar tiap CategorySection baru fetch datanya saat discroll,
- * bukan semua sekaligus saat halaman dibuka.
- *
- * Memakai cek scroll + getBoundingClientRect (bukan IntersectionObserver)
- * agar perilakunya bisa diverifikasi dan konsisten di semua browser.
- */
 function LazySection({ children, minHeight = 420, buffer = 300 }) {
   const [visible, setVisible] = useState(false);
   const ref = useRef(null);

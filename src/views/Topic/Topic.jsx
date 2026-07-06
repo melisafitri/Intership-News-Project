@@ -4,6 +4,7 @@ import TopicTemplate from "../../templates/TopicTemplate/TopicTemplate";
 import NewsList from "../../components/organisms/NewsList/NewsList";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
+import StateView from "../../components/molecules/StateView/StateView";
 import { NewsServices } from "../../services/newsService";
 import "./Topic.css";
 
@@ -13,7 +14,7 @@ const Topic = () => {
 
   const topicLabel = location.state?.topicLabel || slug?.replace(/-/g, " ");
 
-  const { news, loading, error } = NewsServices(slug);
+  const { news, loading, error, refetch } = NewsServices(slug);
 
   return (
     <TopicTemplate mobileHeader={<MobileTopBar title={topicLabel} />}>
@@ -25,12 +26,19 @@ const Topic = () => {
           </p>
         </div>
 
-        {error && (
-          <p style={{ color: "#aaa", padding: "20px 0" }}>{error}</p>
-        )}
-
-        {loading ? (
+        {error ? (
+          <StateView
+            title="Koneksi bermasalah"
+            message="Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi."
+            onRetry={refetch}
+          />
+        ) : loading ? (
           <p style={{ color: "#aaa", padding: "20px 0" }}>Memuat berita...</p>
+        ) : news.length === 0 ? (
+          <StateView
+            title="Berita tidak ditemukan"
+            message={`Tidak ada hasil untuk #${topicLabel}.`}
+          />
         ) : (
           <NewsList news={news} />
         )}

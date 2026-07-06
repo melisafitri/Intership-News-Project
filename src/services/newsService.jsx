@@ -49,6 +49,7 @@ export function NewsServices(slug) {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [reloadKey, setReloadKey] = useState(0);
 
   // reset saat kategori berganti
   useEffect(() => {
@@ -93,21 +94,33 @@ export function NewsServices(slug) {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, [slug, page]);
+  }, [slug, page, reloadKey]);
 
   const loadMore = () => {
     setPage((prev) => prev + 1);
   };
 
-  return { news, loading, error, loadMore, hasMore };
+  // ambil ulang data dari awal (dipakai tombol "Coba lagi")
+  const refetch = () => {
+    setNews([]);
+    setPage(1);
+    setHasMore(true);
+    setError(null);
+    setReloadKey((k) => k + 1);
+  };
+
+  return { news, loading, error, loadMore, hasMore, refetch };
 }
 
 export function useTrending() {
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
+    setLoading(true);
+    setError(null);
     fetch(`${baseUrl}/tags/trending?limit=10`, {
       method: 'GET',
       headers: {
@@ -122,9 +135,11 @@ export function useTrending() {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
-  }, []);
+  }, [reloadKey]);
 
-  return { trending, loading, error };
+  const refetch = () => setReloadKey((k) => k + 1);
+
+  return { trending, loading, error, refetch };
 }
 
 export function useNewsDetail(id) {

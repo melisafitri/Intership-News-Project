@@ -1,0 +1,49 @@
+.state-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  padding: 48px 16px;
+  min-height: 320px;
+}
+
+.state-view__img {
+  width: 180px;
+  max-width: 60%;
+  height: auto;
+  opacity: 0.9;
+}
+
+.state-view__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.state-view__msg {
+  margin: 0;
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #aaa;
+}
+
+.state-view__btn {
+  margin-top: 6px;
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #1fa3f4;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.state-view__btn:hover {
+  background-color: #1789cf;
+}
