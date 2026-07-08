@@ -6,16 +6,19 @@ import TopicList from "../../components/organisms/TopicList/TopicList";
 import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
 import StateView from "../../components/molecules/StateView/StateView";
 import { errorStateProps } from "../../utils/errorState";
-import { NewsServices } from "../../services/newsService";
+import { useTrending, normalizeArticle, slugifyTag } from "../../services/newsService";
 import "./Topic.css";
 
 const Topic = () => {
   const location = useLocation();
   const { slug } = useParams();
 
-  const topicLabel = location.state?.topicLabel || slug?.replace(/-/g, " ");
+  const { trending, loading, error, refetch } = useTrending();
 
-  const { news, loading, error, refetch } = NewsServices(slug);
+  // cocokkan slug URL dengan tag dari /tags/trending, lalu ambil beritanya
+  const topic = trending.find((t) => slugifyTag(t.tag) === slug);
+  const topicLabel = location.state?.topicLabel || topic?.tag || slug?.replace(/-/g, " ");
+  const news = (topic?.data ?? []).map(normalizeArticle);
 
   return (
     <TopicTemplate mobileHeader={<MobileTopBar title={topicLabel} />}>

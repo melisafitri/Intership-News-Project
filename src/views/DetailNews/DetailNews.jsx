@@ -9,6 +9,8 @@ import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/Ho
 import RelatedNews from "../../components/organisms/RelatedNews/RelatedNews";
 import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
 import { handleImageError } from "../../utils/imageFallback";
+import StateView from "../../components/molecules/StateView/StateView";
+import { errorStateProps } from "../../utils/errorState";
 import { useNewsDetail, NewsServices } from "../../services/newsService";
 import drumpImage from "../../assets/images/drump.png";
 import "./DetailNews.css";
@@ -51,7 +53,7 @@ const CATEGORY_NAME_TO_SLUG = {
 function DetailNews() {
   const { id } = useParams();
   const { state } = useLocation();
-  const { detail, loading, error } = useNewsDetail(id);
+  const { detail, loading, error, refetch } = useNewsDetail(id);
 
   const a = detail?.attributes ?? {};
 
@@ -99,11 +101,7 @@ function DetailNews() {
   if (error) {
     return (
       <DetailNewsTemplate mobileHeader={mobileHeader}>
-        <p style={{ padding: "40px 0", textAlign: "center", color: "red" }}>
-          {error.status
-            ? `Terjadi kesalahan (kode ${error.status}). Coba lagi nanti.`
-            : "Gagal memuat berita. Periksa koneksi internet Anda."}
-        </p>
+        <StateView {...errorStateProps(error)} onRetry={refetch} />
       </DetailNewsTemplate>
     );
   }

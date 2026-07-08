@@ -28,6 +28,28 @@ const formatDate = (date) => {
   );
 };
 
+// ubah nama tag jadi slug URL (mis. "Gempa Venezuela" -> "gempa-venezuela")
+export const slugifyTag = (tag = "") =>
+  tag
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+
+// bentuk 1 artikel dari API ke bentuk yang dipakai kartu berita
+export const normalizeArticle = (item) => {
+  const a = item.attributes ?? {};
+  return {
+    id: item.id,
+    title: a.title,
+    image: a.image_url,
+    category: a.category?.name,
+    source: a.news_origin?.origin,
+    date: formatDate(a.pubdate),
+    description: a.description ?? "",
+    readingTime: estimateReadingTime(a.content ?? a.description),
+  };
+};
+
 const CATEGORY_ID_MAP = {
   "berita-utama": 15,
   "terkini": 1,
@@ -83,19 +105,7 @@ export function NewsServices(slug) {
       .then((result) => {
         const list = result.data?.lists?.data ?? [];
         const meta = result.data?.lists?.meta;
-        const normalized = list.map((item) => {
-          const a = item.attributes;
-          return {
-            id: item.id,
-            title: a.title,
-            image: a.image_url,
-            category: a.category?.name,
-            source: a.news_origin?.origin,
-            date: formatDate(a.pubdate),
-            description: a.description ?? "",
-            readingTime: estimateReadingTime(a.content ?? a.description),
-          };
-        });
+        const normalized = list.map(normalizeArticle);
         setNews((prev) => (page === 1 ? normalized : [...prev, ...normalized]));
         if (meta && meta.current_page >= meta.last_page) setHasMore(false);
       })
@@ -162,16 +172,17 @@ export function useNewsDetail(id) {
   const [detail, setDetail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     if (!id) return;
     setLoading(true);
+    setError(null);
 
     fetch(`${baseUrl}/news/${id}`, {
     method: 'GET',
     headers: {
     "Accept": "application/json",
-    // "Visitor-Id": "Hello World",
     "apikey": import.meta.env.VITE_API_KEY,
   },
     })
@@ -189,7 +200,12 @@ export function useNewsDetail(id) {
       })
       .catch((err) => setError({ status: err.status ?? null, message: err.message }))
       .finally(() => setLoading(false));
-  }, [id]);
+  }, [id, reloadKey]);
 
-  return { detail, loading, error };
+  const refetch = () => {
+    setError(null);
+    setReloadKey((k) => k + 1);
+  };
+
+  return { detail, loading, error, refetch };
 }

@@ -1,0 +1,40 @@
+<svg width="200" height="190" viewBox="0 0 200 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g404-blue" x1="40" y1="40" x2="150" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34d1ff"/>
+      <stop offset="1" stop-color="#0a86ff"/>
+    </linearGradient>
+    <linearGradient id="g404-red" x1="38" y1="56" x2="66" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff6b7a"/>
+      <stop offset="1" stop-color="#ef2f49"/>
+    </linearGradient>
+  </defs>
+
+  <!-- awan / blob cyan lembut -->
+  <ellipse cx="100" cy="100" rx="82" ry="56" fill="#e6f6ff"/>
+  <ellipse cx="74" cy="82" rx="46" ry="38" fill="#d6eefd"/>
+  <ellipse cx="132" cy="90" rx="42" ry="34" fill="#d6eefd"/>
+  <path d="M32 128 C60 150 140 150 170 122" stroke="#8fd8ff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <!-- garis gerak (motion) -->
+  <line x1="16" y1="92" x2="30" y2="92" stroke="#7fd2ff" stroke-width="5" stroke-linecap="round"/>
+  <line x1="20" y1="108" x2="32" y2="108" stroke="#7fd2ff" stroke-width="5" stroke-linecap="round"/>
+  <line x1="170" y1="70" x2="184" y2="70" stroke="#7fd2ff" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- gagang kaca pembesar -->
+  <line x1="116" y1="110" x2="146" y2="140" stroke="url(#g404-blue)" stroke-width="15" stroke-linecap="round"/>
+
+  <!-- lensa -->
+  <circle cx="92" cy="86" r="42" fill="#ffffff"/>
+  <circle cx="92" cy="86" r="42" stroke="url(#g404-blue)" stroke-width="11"/>
+  <!-- highlight lensa -->
+  <path d="M72 66 A28 28 0 0 1 92 58" stroke="#eaf7ff" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- teks 404 -->
+  <text x="92" y="96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#0a86ff">404</text>
+
+  <!-- badge merah dengan X -->
+  <circle cx="52" cy="70" r="15" fill="url(#g404-red)"/>
+  <line x1="47" y1="65" x2="57" y2="75" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="57" y1="65" x2="47" y2="75" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+</svg>

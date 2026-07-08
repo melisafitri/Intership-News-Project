@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import TopicItem from "../../atoms/TopicItem/TopicItem";
-import { useTrending } from "../../../services/newsService";
+import { useTrending, slugifyTag } from "../../../services/newsService";
 import "./TopicList.css";
 
 function TopicList() {
@@ -8,11 +8,9 @@ function TopicList() {
   const { trending, loading, error, refetch } = useTrending();
 
   const handleTopicClick = (topic) => {
-    const slug = topic.tag
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "");
-    navigate(`/topicpage/${slug}`, { state: { topicLabel: topic.tag } });
+    navigate(`/topicpage/${slugifyTag(topic.tag)}`, {
+      state: { topicLabel: topic.tag },
+    });
   };
 
   return (
