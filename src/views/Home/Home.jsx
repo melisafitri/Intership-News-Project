@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NewsServices } from "../../services/newsService";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import CategoryTemplate from "../../templates/CategoryTemplate/CategoryTemplate";
 import BannerCarousel from "../../components/organisms/BannerCarousel/BannerCarousel";
 import NewsList from "../../components/organisms/NewsList/NewsList";
@@ -9,7 +9,8 @@ import TopicList from "../../components/organisms/TopicList/TopicList";
 import CategorySection from "../../components/organisms/CategorySection/CategorySection";
 import LazySection from "../../components/organisms/CategorySection/LazySection";
 import StateView from "../../components/molecules/StateView/StateView";
-import { errorStateProps } from "../../utils/errorState";
+import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
+import { errorStateProps, emptyStateProps } from "../../utils/errorState";
 import { useIsMobile } from "../../hooks/useIsMobile";
 import "./Home.css";
 /* 
@@ -93,6 +94,7 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page");
   const { slug } = useParams();
+  const navigate = useNavigate();
   /* DUMMY SLIDES — dinonaktifkan, diisi dari API
   const [slides, setSlides] = useState([
     { id: "s1", image: imgKereta, title: "Klasemen Sementara Grup A hingga D Piala Dunia 2026 Jelang Matchday 2", category: "Olahraga", source: "okezone", date: "Kamis, 18 Juni 2026", readingTime: 3 },
@@ -113,7 +115,8 @@ const Home = () => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (isMobile) return;
+    // scroll infinite: aktif di desktop, dan di mobile hanya saat buka halaman kategori
+    if (isMobile && !slug) return;
     const handleScroll = () => {
       const nearBottom =
         window.innerHeight + window.scrollY >= document.body.offsetHeight - 300;
@@ -123,9 +126,29 @@ const Home = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasMore, loading, isMobile]);
+  }, [hasMore, loading, isMobile, slug]);
 
   if (isMobile) {
+    // /category/:slug → tampilkan list lengkap berita kategori tersebut
+    if (slug) {
+      return (
+        <div style={{ minHeight: "100vh", backgroundColor: "#252525" }}>
+          <MobileTopBar title={label} onBack={() => navigate("/")} />
+          <div className="home__mobile-sections">
+            {error ? (
+              <StateView {...errorStateProps(error)} onRetry={refetch} />
+            ) : !loading && news.length === 0 ? (
+              <StateView {...emptyStateProps("Belum ada berita untuk kategori ini.")} />
+            ) : (
+              <NewsList news={news} />
+            )}
+            {loading && <p style={{ textAlign: "center", padding: "20px", color: "#aaa" }}>Memuat berita...</p>}
+          </div>
+        </div>
+      );
+    }
+
+    // / (home) → tampilkan semua kategori seperti biasa
     return (
       <CategoryTemplate>
         <div className="home__mobile-sections">
@@ -154,10 +177,7 @@ const Home = () => {
           {error ? (
             <StateView {...errorStateProps(error)} onRetry={refetch} />
           ) : !loading && news.length === 0 ? (
-            <StateView
-              title="Berita tidak ditemukan"
-              message="Belum ada berita untuk kategori ini."
-            />
+            <StateView {...emptyStateProps("Belum ada berita untuk kategori ini.")} />
           ) : (
             <>
               <BannerCarousel slides={slides} />

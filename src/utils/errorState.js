@@ -1,5 +1,6 @@
 import failedLoadIcon from "../assets/icons/failed-load-news.svg";
 import error404Icon from "../assets/icons/error-404.svg";
+import emptyIcon from "../assets/icons/failed-load-news.svg";
 
 export function errorStateProps(error) {
   // 404 → berita/halaman tidak ditemukan
@@ -25,5 +26,14 @@ export function errorStateProps(error) {
     image: failedLoadIcon,
     title: "Koneksi bermasalah",
     message: "Gagal memuat berita. Periksa koneksi internet Anda, lalu coba lagi.",
+  };
+}
+
+// empty state → data kosong / tidak ada hasil
+export function emptyStateProps(message = "Belum ada berita untuk ditampilkan.") {
+  return {
+    image: emptyIcon,
+    title: "Berita tidak ditemukan",
+    message,
   };
 }

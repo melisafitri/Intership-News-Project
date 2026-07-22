@@ -22,6 +22,7 @@
 }
 
 .topic-list-btn {
+  display: block;
   width: 100%;
   padding: 10px 0;
   background: #242323;
@@ -30,8 +31,12 @@
   color: white;
   font-size: 13px;
   font-weight: 500;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
   transition: 0.2s;
+  position: relative;
+  z-index: 1;
 }
 
 .topic-list-btn:hover {

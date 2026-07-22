@@ -8,8 +8,16 @@ import "./MobileTopBar.css";
  * dan opsional tombol bagikan (kanan).
  * Disembunyikan di desktop lewat CSS.
  */
-function MobileTopBar({ title = "", showShare = false, shareTitle = "" }) {
+function MobileTopBar({ title = "", showShare = false, shareTitle = "", onBack }) {
   const navigate = useNavigate();
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate(-1);
+    }
+  };
 
   const handleShare = async () => {
     const url = window.location.href;
@@ -35,7 +43,7 @@ function MobileTopBar({ title = "", showShare = false, shareTitle = "" }) {
       <button
         type="button"
         className="mobile-top-bar__btn"
-        onClick={() => navigate(-1)}
+        onClick={handleBack}
         aria-label="Kembali"
       >
         <img src={backIcon} alt="Kembali" className="mobile-top-bar__icon" />

@@ -15,8 +15,7 @@ function CategorySection({ label, slug }) {
       <div className="category-section__header">
         <h2 className="category-section__title">{label}</h2>
         <NavLink
-          to={`/topicpage/${slug}`}
-          state={{ topicLabel: label }}
+          to={`/category/${slug}`}
           className="category-section__see-more"
         >
           See More ›

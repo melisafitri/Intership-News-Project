@@ -3,7 +3,7 @@ import { useTrending, normalizeArticle } from "../../services/newsService";
 import InterestTopicTemplate from "../../templates/InterestTopicTemplate/InterestTopicTemplate";
 import HorizontalNewsList from "../../components/organisms/HorizontalNewsList/HorizontalNewsList";
 import StateView from "../../components/molecules/StateView/StateView";
-import { errorStateProps } from "../../utils/errorState";
+import { errorStateProps, emptyStateProps } from "../../utils/errorState";
 import "./InterestTopic.css";
 
 const InterestTopic = () => {
@@ -26,10 +26,7 @@ const InterestTopic = () => {
         ) : error ? (
           <StateView {...errorStateProps(error)} onRetry={refetch} />
         ) : topics.length === 0 ? (
-          <StateView
-            title="Berita tidak ditemukan"
-            message="Belum ada berita untuk topik-topik ini."
-          />
+          <StateView {...emptyStateProps("Belum ada berita untuk topik-topik ini.")} />
         ) : (
           topics.map((topic) => (
             <div className="interest-topic__section" key={topic.tag}>

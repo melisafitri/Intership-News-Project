@@ -1,0 +1,106 @@
+# PRD - News+ Redesign
+
+## A. Homepage
+
+### Requirements
+
+| User Story | Acceptance Criteria | Note |
+| :--- | :--- | :--- |
+| Sebagai **user**, saya dapat melihat homepage news dan berbagai berita di canal atau kategori | **1.** Ketika masuk ke aplikasi (path `/`), saya akan diarahkan ke Halaman Homepage News+.<br><br>**2.** Saya dapat meng-scroll ke bawah untuk melihat yang berikut ini:<br><br>**a. Headline Slide (BannerCarousel)**<br>▪ Headline terdiri dari Title, Thumbnail, Publisher (Source), Category, Date and Time, serta tambahan fitur **Reading Time**.<br>▪ Dengan mengklik headline tersebut, saya akan diarahkan ke halaman detail berita tersebut.<br><br>**b. Customized Category or Canal Lineup (CategorySection & HorizontalNewsList)**<br>▪ Saya dapat melihatnya di bagian bawah dari headline news.<br>▪ Saya dapat melihat berbagai kategori atau canal lineup yang diload secara dinamis (`LazySection`).<br>▪ Setiap kategori menampilkan berita yang disusun horizontal, dan saya dapat menggeser (scroll) ke kiri dan ke kanan untuk memilih berita yang ingin saya klik.<br>▪ Terdapat *see more* button pada setiap kategori atau canal lineup, yang dapat mengarahkan saya ke halaman list news khusus kategori tersebut. | *Terintegrasi dalam satu desain responsif (Web & Mobile)* |
+
+### User interaction and design
+*Link Figma dari Homepage for News+ bisa diakses pada link terkait (sesuai dokumentasi UI/UX tim Anda).*
+
+### Required Elements
+
+| Element | Description | Actions | Next steps |
+| :--- | :--- | :--- | :--- |
+| **Thumbnail news** | Type of cards<br>Cards ratio = 16:9 | Thumbnail news | Type of cards<br>Cards ratio = 16:9 |
+| **Category Lineup** | Admin / CMS dapat menambahkan atau menghilangkan lineup kategori di halaman homepage. Komponen dirender dinamis di `Home.jsx`. | | |
+
+### Release Criteria
+*Kriteria yang diekspektasikan dari Homepage for News+*
+
+| Type/Items | Expected Result | QA Notes |
+| :--- | :--- | :--- |
+| **Homepage - News Dashboard** | User dapat melihat homepage news dan konten berita yang berada didalamnya dengan lancar (mendukung Lazy Load). | |
+| **New Category or Canal Lineup**| Kategori baru yang masuk dari API otomatis ter-render pada komponen `CategorySection`. | |
+
+---
+
+## B. List of News (Category & Topic Page)
+
+### Requirements
+
+| User Story | Acceptance Criteria | Note |
+| :--- | :--- | :--- |
+| Sebagai **user**, saya dapat melihat halaman list news dari berbagai berita di canal atau topik. | **1.** Dengan mengklik tombol *see more* pada kategori, saya dapat melihat halaman khusus untuk menampilkan daftar berita dari kategori tersebut (`/category/:slug`).<br><br>**2.** Karena saya sedang berada di halaman ini, saya dapat melihat detail berikut:<br><br>**a. Mobile Top Bar / Breadcrumbs**<br>Terdapat header navigasi (berisi nama kategori). Dengan mengklik tombol *Back*, saya akan diarahkan kembali ke halaman sebelumnya.<br><br>**b. Topic Result Info**<br>Menampilkan keterangan "Result for # [Topik]" dan jumlah "Total [N] Articles".<br><br>**c. Scrollable list news aspect (NewsList)**<br>Setelah saya melihat ini, saya dapat melihat detail berikut:<br>▪ **News thumbnail**: Thumbnail berita berbentuk persegi panjang (16:9) dengan ujung membulat.<br>▪ **Title**: Nama judul dari berita tersebut (diakhiri titik tiga jika terlalu panjang).<br>▪ **Category or Canal** & **Date and Time** (Format: Hari, DD Bulan YYYY - HH:MM).<br><br>**3.** Halaman memuat daftar berita ke bawah (vertikal) yang bisa di-scroll. Jika tidak ada berita, akan muncul komponen **StateView** "Berita tidak ditemukan". | *Menggunakan komponen `Topic.jsx`* |
+
+### User interaction and design
+*Link Figma dari List of News+ bisa diakses pada link terkait.*
+
+### Required Elements
+
+| Element | Description | Actions | Next steps |
+| :--- | :--- | :--- | :--- |
+| **Thumbnail news** | Type of cards<br>Cards ratio = 16:9 | Thumbnail news | Type of cards<br>Cards ratio = 16:9 |
+
+### Release Criteria
+*Kriteria yang diekspektasikan dari List of News+*
+
+| Type/Items | Expected Result | QA Notes |
+| :--- | :--- | :--- |
+| **List News** | User dapat melihat halaman yang berisi konten berita yang berhubungan dengan kategori atau canal saja, terpisah dari homepage news+. Jika data kosong, tampil halaman empty state. | |
+
+---
+
+## C. News Detail
+
+### Requirements
+
+| User Story | Acceptance Criteria | Note |
+| :--- | :--- | :--- |
+| Sebagai **user**, saya dapat melihat halaman detail dari berita yang telah saya pilih. | **1.** Ketika saya berada di halaman detail berita (`/detail/:id`), saya dapat melihat elemen berikut:<br><br>**a. Top Bar / Back Button**<br>Mengklik tombol back mengarahkan kembali ke halaman sebelumnya.<br><br>**b. Headline Info**<br>Terdiri dari **Title**, **Publisher / Source**, **Category**, **Date and Time**, dan **Reading Time** (Waktu baca estimasi).<br><br>**c. Share Button (SocialMediaIcon)**<br>Terdapat icon media sosial untuk membagikan berita yang bersangkutan.<br><br>**d. Thumbnail**<br>Gambar utama berita dengan rasio 16:9. (Sudah dilengkapi fallback image apabila gambar gagal di-load).<br><br>**e. Content**<br>Isi detail konten dari berita yang terletak di bawah headline.<br><br>**f. Baca Juga (RelatedNews)**<br>▪ Saya dapat melihat berita terkait di bawah isi konten.<br>▪ Berita disajikan secara vertikal. Setiap berita mengandung thumbnail, judul, date, dan time.<br><br>**g. Berita Pilihan / Terpopuler (HorizontalNewsList)**<br>Saya dapat melihat deretan berita yang disusun secara horizontal sebagai rekomendasi bacaan selanjutnya di bagian terbawah. | *Menggunakan komponen `DetailNews.jsx`* |
+
+### User interaction and design
+*Link Figma dari News Detail bisa diakses pada link terkait.*
+
+### Required Elements
+
+| Element | Description | Actions | Next steps |
+| :--- | :--- | :--- | :--- |
+| **Thumbnail news** | Type of cards<br>Cards ratio = 16:9 | Thumbnail news | Type of cards<br>Cards ratio = 16:9 |
+| **Social CTA** | Type: Icon buttons | Action | Share link to social platforms |
+
+### Release Criteria
+*Kriteria yang diekspektasikan dari News Detail*
+
+| Type/Items | Expected Result | QA Notes |
+| :--- | :--- | :--- |
+| **Content Detail** | User dapat mengklik konten berita apa pun yang tersedia, membaca isi keseluruhan konten, mengetahui estimasi waktu baca (Reading Time), dan mengklik berita "Baca Juga". | |
+
+---
+
+## D. Popular Topics
+
+### Objective
+Halaman/Komponen dari News+ yang khusus menampilkan daftar topik atau hashtag yang paling populer (Trending). Bertujuan memudahkan user dalam eksplorasi berita berdasarkan hashtag populer.
+
+### Requirements
+
+| User Story | Acceptance Criteria | Note |
+| :--- | :--- | :--- |
+| Sebagai **user**, saya dapat melihat daftar topik populer dan menjelajahi berita di dalamnya. | **1.** Di halaman Homepage maupun List of News (khususnya untuk view Web/Desktop), terdapat bagian **Popular Topics (TopicList)**.<br><br>**2.** Komponen ini mengambil daftar hashtag populer secara otomatis melalui API (`useTrending`).<br><br>**3.** Ketika saya meng-klik salah satu hashtag pada Popular Topics, saya akan diarahkan ke halaman List of News (`/topicpage/:slug`) yang memuat daftar artikel spesifik yang berkaitan dengan hashtag tersebut.<br><br>**4.** Hasil pencarian topik juga memuat total artikel yang tersedia. | *Menggunakan komponen `TopicList`* |
+
+### Required Elements
+
+| Element | Description | Actions | Next steps |
+| :--- | :--- | :--- | :--- |
+| **Topic Items** | Hashtag text items | Clickable text | Mengarah ke halaman TopicPage |
+
+### Release Criteria
+*Kriteria yang diekspektasikan dari Popular Topics*
+
+| Type/Items | Expected Result | QA Notes |
+| :--- | :--- | :--- |
+| **Trending Topics** | User dapat melihat daftar hashtag yang paling banyak dibicarakan, mengklik hashtag, dan melihat daftar berita sesuai topik tersebut. | |

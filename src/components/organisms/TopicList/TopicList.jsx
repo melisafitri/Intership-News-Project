@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import TopicItem from "../../atoms/TopicItem/TopicItem";
 import { useTrending, slugifyTag } from "../../../services/newsService";
 import "./TopicList.css";
@@ -48,12 +48,9 @@ function TopicList() {
         ))}
       </ul>
 
-      <button
-        className="topic-list-btn"
-        onClick={() => navigate("/interest-topic")}
-      >
+      <NavLink to="/interest-topic" className="topic-list-btn">
         See More Topic
-      </button>
+      </NavLink>
     </div>
   );
 }

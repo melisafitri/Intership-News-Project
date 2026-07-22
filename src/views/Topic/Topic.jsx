@@ -5,7 +5,7 @@ import NewsList from "../../components/organisms/NewsList/NewsList";
 import TopicList from "../../components/organisms/TopicList/TopicList";
 import MobileTopBar from "../../components/organisms/MobileTopBar/MobileTopBar";
 import StateView from "../../components/molecules/StateView/StateView";
-import { errorStateProps } from "../../utils/errorState";
+import { errorStateProps, emptyStateProps } from "../../utils/errorState";
 import { useTrending, normalizeArticle, slugifyTag } from "../../services/newsService";
 import "./Topic.css";
 
@@ -35,10 +35,7 @@ const Topic = () => {
         ) : loading ? (
           <p style={{ color: "#aaa", padding: "20px 0" }}>Memuat berita...</p>
         ) : news.length === 0 ? (
-          <StateView
-            title="Berita tidak ditemukan"
-            message={`Tidak ada hasil untuk #${topicLabel}.`}
-          />
+          <StateView {...emptyStateProps(`Tidak ada hasil untuk #${topicLabel}.`)} />
         ) : (
           <NewsList news={news} />
         )}
